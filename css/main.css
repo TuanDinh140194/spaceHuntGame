@@ -138,3 +138,23 @@
     border-right: 2px solid var(--white);
     transform: rotate(45deg);
   }
+
+  .main-menu {
+      display: fixed;
+      top: 100px;
+     
+  }
+
+  .grid-container {
+    display:grid; 
+    grid-template-columns: auto;
+  }
+  .grid-container__footer {
+      margin: 10px;
+  }
+
+  .grid-cell {
+      align-items: center;
+      padding-left: 50px;
+      padding-top: 10px;
+  }

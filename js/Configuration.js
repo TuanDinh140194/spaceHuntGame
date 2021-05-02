@@ -179,7 +179,7 @@ function updateValue(id, parent_value) {
 
 }
 
-function generateForm(id, className, title, obj, objName) {
+function generateForm(id, className, title, obj, objName, callBack) {
 
     var formWrapper = document.createElement("div");
     formWrapper.style.zIndex ="1";
@@ -260,8 +260,6 @@ function generateForm(id, className, title, obj, objName) {
         }
 
         localStorage.setItem(objName, JSON.stringify(obj));
-
-
     });
 
     formWrapper.appendChild(form);
@@ -476,6 +474,8 @@ function generateForm(id, className, title, obj, objName) {
 
     cancel.addEventListener("click",()=>{
         formWrapper.style.display ="none";
+        if (callBack !== undefined) 
+            callBack();
     });
 
     div4.appendChild(submitBtn);
@@ -485,4 +485,5 @@ function generateForm(id, className, title, obj, objName) {
     return formWrapper;
 
 }
+
 

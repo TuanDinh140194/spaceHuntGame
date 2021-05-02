@@ -1,5 +1,3 @@
-
-
 function $selector(s) {
     return document.querySelector(s);
 } 
