@@ -79,8 +79,9 @@ function makeMove(direction)
 		}
 		
 	checkStatus()
-		//Need to check if gamemode is set to "regular play"
-		//Before checking for game over.
+		//Checks if ship still has energy and supplies to continue playing the game.
+		//If either run out, should alert the player, signifying end of game.
+		//Function should only run if gamemode is set to "regular play".
 		if (document.forms[1].energy.value <= 0){
 			alert("Game Over! You ran out of energy!");
 			setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
