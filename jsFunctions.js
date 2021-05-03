@@ -79,6 +79,8 @@ function makeMove(direction)
 		}
 		
 	checkStatus()
+		//Need to check if gamemode is set to "regular play"
+		//Before checking for game over.
 		if (document.forms[1].energy.value <= 0){
 			alert("Game Over! You ran out of energy!");
 			setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
