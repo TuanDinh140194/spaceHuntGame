@@ -1,5 +1,5 @@
 class Map {
-    
+
     constructor(width, height, configuration, ship) {
 
         this.width = width;
@@ -81,9 +81,9 @@ class Map {
         document.body.appendChild(this.elem);
 
         this.elem.appendChild(this.ship.elem);
-        
-        this.ship.setLocation(this.width, this.height);
-        
+
+        this.ship.setLocation(1, 1);
+
         this.elem.style.left = (window.innerWidth / 2 - this.ship.x_of_map * CELL_SIZE) + "px";
         this.elem.style.top = (window.innerHeight / 2 - this.ship.y_of_map * CELL_SIZE) + "px";
 
@@ -91,21 +91,24 @@ class Map {
 
         var table = document.createElement('table');
         table.style.borderCollapse = "collapse";
+        table.className = "table-format";
         table.style.width = this.width * CELL_SIZE + "px";
         table.style.height = this.height * CELL_SIZE + "px";
 
         this.elem.appendChild(table);
         this.elem.style.backgroundColor = "black";
 
-        for (var i = this.height; i > 0; i--) {
+        for (var i = 0; i < this.height; i++) {
             var row = document.createElement("tr");
-            for (var j = this.width; j > 0; j--) {
+
+            for (var j = 0; j < this.width; j++) {
                 var cell = document.createElement("td");
-                cell.style.width = (CELL_SIZE - 1) + "px";
-                cell.style.height = (CELL_SIZE - 1) + "px";
+                cell.style.width = (CELL_SIZE) + "px";
+                cell.style.height = (CELL_SIZE) + "px";
                 cell.style.padding = 0;
                 cell.style.margin = 0;
-                cell.style.border = "1px solid white";
+                cell.style.border = "1px solid red";
+                // cell.setAttribute("id",(i+1) + "-" + (j+1));
                 row.appendChild(cell);
             }
             table.appendChild(row);

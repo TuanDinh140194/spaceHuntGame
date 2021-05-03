@@ -10,14 +10,20 @@ class Ship {
         this.id = "space-ship";
         this.configuration = configuration;
         this.elem = document.createElement('div');
+        this.elem.style.width = CELL_SIZE + "px";
+        this.elem.style.height = CELL_SIZE + "px";
+
         this.elem.setAttribute("id", this.id);
         this.elem.style.position = "absolute";
+        this.elem.style.zIndex = 1;
 
 
         this.img = document.createElement('img');
         this.img.setAttribute("src", "img/spaceship.gif");
         this.img.style.height = (CELL_SIZE - 5) + "px";
         this.img.style.width = (CELL_SIZE - 5) + "px";
+        this.img.style.left = "2px";
+        this.img.style.top = "2px";
         this.elem.appendChild(this.img);
 
 
@@ -33,8 +39,8 @@ class Ship {
             this.energy--;
         this.x_of_map = x;
         this.y_of_map = y;
-        this.elem.style.left = (this.x_of_map - 1) * CELL_SIZE  + "px";
-        this.elem.style.top = (this.y_of_map - 1) * CELL_SIZE  + "px";
+        this.elem.style.left = ((this.x_of_map - 1) * CELL_SIZE) + "px";
+        this.elem.style.top = ((this.y_of_map - 1) * (CELL_SIZE + 1)) + "px";
 
     }
     setAngle(angle) {
