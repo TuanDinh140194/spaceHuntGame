@@ -2,11 +2,11 @@
 //In production mode, most of these should be populated from a configuration
 //file or a random generator.
 
-<!---->
+
 function initializeState()
 {
     alert("Initializing!");
-    document.forms[1].location.value="0,0";
+    document.forms[1].location.value= "0,0";
     document.forms[1].energy.value=1000;
     document.forms[1].supplies.value=100.00
     document.forms[1].credits.value=1000;
@@ -19,7 +19,7 @@ function initializeState()
 //makeMove passes the player move and various state values to the game engine,
 //then receives the response and updates the various fields on the web page
 
-<!---->
+
 function makeMove(direction)
 {
 
@@ -43,13 +43,13 @@ function makeMove(direction)
                         break;
                 case '180':
 						if (x < 1) {
-							x = 128 - (parseInt(document.forms[0].distance.value) - 1); // Wormhole to other side of h-plane
+							x = parseInt(document.forms[1].mapSizeX.value) - (parseInt(document.forms[0].distance.value) - 1); // Wormhole to other side of h-plane
 						}
 						else {x -= parseInt(document.forms[0].distance.value);}
                         break;
                 case '270':
 						if (y < 1) {
-							y = 128 - (parseInt(document.forms[0].distance.value) - 1); // Wormhole to other side of v-plane
+							y = parseInt(document.forms[1].mapSizeY.value) - (parseInt(document.forms[0].distance.value) - 1); // Wormhole to other side of v-plane
 						}
 						else {y -= parseInt(document.forms[0].distance.value);}
                         break;
