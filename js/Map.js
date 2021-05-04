@@ -129,6 +129,12 @@ class Map {
             this.elem.style.left = (window.innerWidth / 2 - x * CELL_SIZE) + "px";
             this.elem.style.top = (window.innerHeight / 2 - y * CELL_SIZE) + "px";
         }
-
+		
+		//Checks ship energy.
+		//If ship is out of energy and "never die" isn't activated, notify player of game over.
+		if (this.ship.energy <= 0 && this.configuration[4].value === false) {
+			alert("Game Over! Out of energy!");
+			setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
+		}
     }
 }
