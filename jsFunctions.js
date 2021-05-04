@@ -31,25 +31,25 @@ function makeMove(direction)
         {
                 case '0':
                         if (x >= document.forms[1].mapSizeX.value) {
-							x = 0 + (parseInt(document.forms[0].distance.value) - 1); // Reset via wormhole behavior.
+							x = 0; // Reset via wormhole behavior.
 						}
 						else {x += parseInt(document.forms[0].distance.value);}
                         break;
                 case '90':
 						if (y >= document.forms[1].mapSizeY.value) {
-							y = 0 + (parseInt(document.forms[0].distance.value) - 1); // Reset via wormhole behavior.
+							y = 0; // Reset via wormhole behavior.
 						}
 						else {y += parseInt(document.forms[0].distance.value);}
                         break;
                 case '180':
 						if (x < 1) {
-							x = 128 - (parseInt(document.forms[0].distance.value) - 1); // Wormhole to other side of h-plane
+							x = 128; // Wormhole to other side of h-plane
 						}
 						else {x -= parseInt(document.forms[0].distance.value);}
                         break;
                 case '270':
 						if (y < 1) {
-							y = 128 - (parseInt(document.forms[0].distance.value) - 1); // Wormhole to other side of v-plane
+							y = 128; // Wormhole to other side of v-plane
 						}
 						else {y -= parseInt(document.forms[0].distance.value);}
                         break;
