@@ -5,6 +5,8 @@ class Ship {
         this.x_of_map = 1;
         this.y_of_map = 1;
         this.energy = configuration[1].value;
+        this.credits = configuration[2].value;
+        this.supplies = configuration[5].value;
 
         this.angle = 0;
         this.id = "space-ship";

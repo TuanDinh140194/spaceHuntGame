@@ -52,6 +52,8 @@ document.getElementById("play-game").addEventListener("click", function () {
         { type: 0, name: "Y", objectName: ship, path: [3] },
         { type: 0, name: "Never die", objectName: configuration, path: [4, 2] },
         { type: 0, name: "Energy", objectName: ship, path: [4] },
+        { type: 0, name: "Credits", objectName: ship, path: [5] },
+        { type: 0, name: "Supplies", objectName: ship, path: [6] },
 
     ];
 
@@ -63,7 +65,7 @@ document.getElementById("play-game").addEventListener("click", function () {
         }
 
         statusForm = generateStatusForm(realTimeStatus, "status-form", "game-form", "Status");
-        statusForm.style.width = "200px";
+        statusForm.style.width = "250px";
         document.body.appendChild(statusForm);
     }
 
