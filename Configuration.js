@@ -15,8 +15,8 @@ function generateElemFrom(parent, id, value) {
 
                     var option = document.createElement("input");
                     option.setAttribute("type", "checkbox");
-                    option.setAttribute("id",id + index);
-                    option.setAttribute("name",id);
+                    option.setAttribute("id", id + index);
+                    option.setAttribute("name", id);
                     option.setAttribute("value", option_name);
 
                     if (value.indexOf(option_name, 0) >= 0) {
@@ -39,7 +39,7 @@ function generateElemFrom(parent, id, value) {
             else {
                 var itemIndex = 0;
                 for (var item in value) {
-                    generateElemFrom(div2, id+itemIndex, value[item]);
+                    generateElemFrom(div2, id + itemIndex, value[item]);
                     var comma = document.createElement("label");
                     comma.innerHTML = ", ";
                     parent.appendChild(comma);
@@ -55,8 +55,8 @@ function generateElemFrom(parent, id, value) {
             var input = document.createElement("input");
             input.setAttribute("type", "number");
             input.setAttribute("value", value);
-            input.setAttribute("id",id );
-            input.setAttribute("name",id);
+            input.setAttribute("id", id);
+            input.setAttribute("name", id);
 
             parent.appendChild(input);
 
@@ -67,8 +67,8 @@ function generateElemFrom(parent, id, value) {
             var input = document.createElement("input");
             input.setAttribute("type", "text");
             input.setAttribute("value", value);
-            input.setAttribute("id",id );
-            input.setAttribute("name",id);
+            input.setAttribute("id", id);
+            input.setAttribute("name", id);
 
             parent.appendChild(input);
         } break;
@@ -128,23 +128,23 @@ function updateValue(id, parent_value) {
 
             case "boolean": {
 
-                var eles = $name(id+itemIndex);
+                var eles = $name(id + itemIndex);
                 for (var itemEle of eles) {
                     if (itemEle.checked) {
-                        parent_value[field] = (itemEle.value ==="true" ? true:false);
+                        parent_value[field] = (itemEle.value === "true" ? true : false);
                     }
                 }
 
             } break;
 
             case "string": {
-                parent_value[field] = $id(id+itemIndex).value;
+                parent_value[field] = $id(id + itemIndex).value;
 
             } break;
 
             case "number": {
 
-                parent_value[field] = Number($id(id+itemIndex).value);
+                parent_value[field] = Number($id(id + itemIndex).value);
 
             } break;
 
@@ -157,13 +157,13 @@ function updateValue(id, parent_value) {
 
                             var index = parent_value[field].indexOf(itemEle.value, 0);
                             if (index < 0)
-                            parent_value[field].push(itemEle.value);
+                                parent_value[field].push(itemEle.value);
 
                         } else {
 
                             var index = parent_value[field].indexOf(itemEle.value, 0);
                             if (index >= 0)
-                            parent_value[field].splice(index, 1);
+                                parent_value[field].splice(index, 1);
                         }
                     }
                 }
@@ -182,7 +182,7 @@ function updateValue(id, parent_value) {
 function generateForm(id, className, title, obj, objName, callBack) {
 
     var formWrapper = document.createElement("div");
-    formWrapper.style.zIndex ="1";
+    formWrapper.style.zIndex = "1";
     formWrapper.setAttribute("id", id);
     formWrapper.className = className;
 
@@ -197,7 +197,7 @@ function generateForm(id, className, title, obj, objName, callBack) {
         e.preventDefault();
         var itemIndex = 0;
         for (var item of obj) {
-            
+
             var item_id = item.id + itemIndex;
             switch (typeof item.value) {
                 case "object": {
@@ -220,7 +220,7 @@ function generateForm(id, className, title, obj, objName, callBack) {
                         }
                     }
                     else {
-                        updateValue(item_id,item.value);
+                        updateValue(item_id, item.value);
                     }
                 } break;
 
@@ -243,12 +243,12 @@ function generateForm(id, className, title, obj, objName, callBack) {
                 } break;
 
                 case "boolean": {
-                   
+
                     var eles = $name(item_id);
-                  
+
                     for (var itemEle of eles) {
                         if (itemEle.checked) {
-                            item.value = (itemEle.value ==="true" ? true:false) ;
+                            item.value = (itemEle.value === "true" ? true : false);
 
                         }
                     }
@@ -267,7 +267,7 @@ function generateForm(id, className, title, obj, objName, callBack) {
     var itemIndex = 0;
 
     for (var item of obj) {
-       
+
         let { id, name, value, range, unit } = item;
         var item_id = id + itemIndex;
 
@@ -287,7 +287,7 @@ function generateForm(id, className, title, obj, objName, callBack) {
         switch (typeof value) {
 
             case "object": {
-               
+
                 if (Array.isArray(value)) {
                     var index = 0;
                     var div2 = document.createElement("div");
@@ -472,9 +472,9 @@ function generateForm(id, className, title, obj, objName, callBack) {
     cancel.setAttribute("type", "button");
     cancel.setAttribute("value", "Cancel");
 
-    cancel.addEventListener("click",()=>{
-        formWrapper.style.display ="none";
-        if (callBack !== undefined) 
+    cancel.addEventListener("click", () => {
+        formWrapper.style.display = "none";
+        if (callBack !== undefined)
             callBack();
     });
 
@@ -493,7 +493,7 @@ const wormhole_behavior = {
     goto_fixed_CP: "Go to fixed CP",
 }
 
-   var configuration = [
+var configuration = [
     { id: "MAX(X,Y)", name: "Initial MAX(X,Y)", value: { x: 50, y: 50 } },
 
     { id: "energy", name: "Initial Energy", value: 1000, unit: "J" },
@@ -512,32 +512,46 @@ const wormhole_behavior = {
     { id: "supplies", name: "Initial Supplies", value: 100, unit: "%" },
 
 ];
-//     if (localStorage.getItem("configuration") !== null) {
-//         configuration = JSON.parse(localStorage.getItem("configuration"));
-//     }
-    var buttonConfig = document.createElement("button");
-    buttonConfig.innerHTML = "Configuration";
-    document.body.appendChild(buttonConfig);
 
-    var formConfig = generateForm("form-configure", "game-form", "Configuration Form", configuration, "configuration", exitConfiguration);
-    formConfig.style.width = "400px";
-    formConfig.style.margin = "auto auto auto auto";
-    formConfig.style.border = "1px solid black";
+
+if (localStorage.getItem("configuration") !== null) {
+    configuration = JSON.parse(localStorage.getItem("configuration"));
+}
+
+
+document.getElementById("mapSizeX").value = configuration[0].value.x;
+document.getElementById("mapSizeY").value = configuration[0].value.y;
+document.getElementById("energy").value = configuration[1].value;
+document.getElementById("supplies").value = configuration[2].value;
+document.getElementById("credits").value = configuration[5].value;
+document.getElementById("location").value = "0,0";
+
+
+var buttonConfig = document.createElement("button");
+buttonConfig.innerHTML = "Configuration";
+document.body.appendChild(buttonConfig);
+
+var formConfig = generateForm("form-configure", "game-form", "Configuration Form", configuration, "configuration", exitConfiguration);
+
+formConfig.style.width = "400px";
+formConfig.style.margin = "auto auto auto auto";
+formConfig.style.border = "1px solid black";
+formConfig.style.display = "none";
+
+document.body.appendChild(formConfig);
+
+buttonConfig.addEventListener("click", function () {
+    formConfig.style.display = "block";
+});
+
+function exitConfiguration() {
+    document.getElementById("mapSizeX").value = configuration[0].value.x;
+    document.getElementById("mapSizeY").value = configuration[0].value.y;
+    document.getElementById("energy").value = configuration[1].value;
+    document.getElementById("supplies").value = configuration[2].value;
+    document.getElementById("credits").value = configuration[5].value;
+    document.getElementById("location").value = "0,0";
     formConfig.style.display = "none";
-    document.body.appendChild(formConfig);
-
-    buttonConfig.addEventListener("click",function(){
-        formConfig.style.display = "block";
-    });
-
-    function exitConfiguration(){
-        document.getElementById("mapSizeX").value = configuration[0].value.x ;
-        document.getElementById("mapSizeY").value = configuration[0].value.y ;
-        document.getElementById("energy").value = configuration[1].value;
-        document.getElementById("supplies").value = configuration[2].value;
-        document.getElementById("credits").value = configuration[5].value;
-        document.getElementById("location").value = "0,0";
-        formConfig.style.display = "none";
-    }
+}
 
 
