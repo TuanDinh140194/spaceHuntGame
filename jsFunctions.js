@@ -62,6 +62,7 @@ function makeMove(direction)
 	checkLocation();
 }
 
+<!---->
 function checkLocation() {
     document.forms[1].location.value = x.toString() + "," + y.toString();
 
@@ -85,6 +86,7 @@ function checkLocation() {
 	}
 }
 
+<!---->
 function checkStatus() {
 	//Checks if ship still has energy and supplies to continue playing the game.
 	//If either run out, should alert the player, signifying end of game.
