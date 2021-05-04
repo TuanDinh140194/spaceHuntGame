@@ -54,38 +54,19 @@ function makeMove(direction)
 						else {y -= parseInt(document.forms[0].distance.value);}
                         break;
         }
-	
-	//Upon making a move, check if player still has energy and supplies
-	//If not, game over.
-	//Otherwise, update player location.
-	checkStatus();
-	checkLocation();
-}
 
+<<<<<<< HEAD
 <!---->
 function checkLocation() {
     document.forms[1].location.value = x.toString() + "," + y.toString();
+=======
+>>>>>>> parent of d6d7e6c (Add files via upload)
+
+	checkLocation()
+        document.forms[1].location.value = x.toString() + "," + y.toString();
 
 
-    // update the fields on the web page with the results
-	document.forms[1].energy.value -= 10 * parseInt(document.forms[0].distance.value);
-	document.forms[1].supplies.value -= 2 * parseInt(document.forms[0].distance.value)// Two percent for later: (document.forms[1].supplies.value * 0.02);
-	switch(direction){
-		case '0':
-			document.forms[1].message.value=item = "Moving Eastbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-		case '90':
-			document.forms[1].message.value=item = "Moving Northbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-		case '180':
-			document.forms[1].message.value=item = "Moving Westbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-		case '270':
-			document.forms[1].message.value=item = "Moving Southbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-	}
-}
-
+<<<<<<< HEAD
 <!---->
 function checkStatus() {
 	//Checks if ship still has energy and supplies to continue playing the game.
@@ -100,4 +81,35 @@ function checkStatus() {
 		alert("Game Over! You ran out of supplies!");
 		setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
 	}
+=======
+        // update the fields on the web page with the results
+		document.forms[1].energy.value -= 10 * parseInt(document.forms[0].distance.value);
+		document.forms[1].supplies.value -= 2 * parseInt(document.forms[0].distance.value)// Two percent for later: (document.forms[1].supplies.value * 0.02);
+		switch(direction){
+			case '0':
+				document.forms[1].message.value=item = "Moving Eastbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+			case '90':
+				document.forms[1].message.value=item = "Moving Northbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+			case '180':
+				document.forms[1].message.value=item = "Moving Westbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+			case '270':
+				document.forms[1].message.value=item = "Moving Southbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+		}
+		
+	checkStatus()
+		//Checks if ship still has energy and supplies to continue playing the game.
+		//If either run out, should alert the player, signifying end of game.
+		//Function should only run if gamemode is set to "regular play".
+		if (document.forms[1].energy.value <= 0){
+			alert("Game Over! You ran out of energy!");
+			setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
+		}else if (document.forms[1].supplies.value <= 0){
+			alert("Game Over! You ran out of supplies!");
+			setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
+		}
+>>>>>>> parent of d6d7e6c (Add files via upload)
 }
