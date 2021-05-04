@@ -554,4 +554,3 @@ function exitConfiguration() {
     formConfig.style.display = "none";
 }
 
-
