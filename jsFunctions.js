@@ -20,7 +20,7 @@ function initializeState() {
 	document.getElementById("energy").value = configuration[1].value;
 	document.getElementById("supplies").value = configuration[2].value;
 	document.getElementById("credits").value = configuration[5].value;
-	document.getElementById("location").value = "0,0";
+	document.getElementById("location").value = "1,1";
 
 }
 
