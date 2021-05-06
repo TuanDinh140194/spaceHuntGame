@@ -1,61 +1,62 @@
 <html>
-<!--
+    <!--
 Space Hunt Core Component
 Written by Warren Harrison (warren@pdx.edu)
 This is the core front end to SpaceHunt - a limited feature, space-based adventure game
 -->
-
-<body onload=initializeState()>
-
+    <body onload=initializeState()>
 
 
-<h1>SpaceHunt 0.1</h1>
 
-<p>
+        <h1>SpaceHunt 0.1</h1>
 
-<table>                    <!-- display movement buttons in a 3x3 table  -->
-<tr>
-<td></td>
-<td><button type="button" onClick="makeMove('90')">90<sup>o</sup></button></td>
-<td></td>
-</tr>
+        <p>
 
-<tr>
-<td><button type="button" onClick="makeMove('180')">180<sup>o</sup></button></td>
-<td></td>
-<td><button type="button" onClick="makeMove('0')">0<sup>o</sup></button></td>
-</tr>
+            <table> <!-- display movement buttons in a 3x3 table  -->
+                <tr>
+                    <td></td>
+                    <td><button type="button" onClick="makeMove('90')">90<sup>o</sup></button></td>
+                    <td></td>
+                </tr>
 
-<tr>
-<td></td>
-<td><button type="button" onClick="makeMove('270')">270<sup>o</sup></button></td>
-<td></td>
-</tr>
+                <tr>
+                    <td><button type="button" onClick="makeMove('180')">180<sup>o</sup></button></td>
+                    <td></td>
+                    <td><button type="button" onClick="makeMove('0')">0<sup>o</sup></button></td>
+                </tr>
 
-</table>
-<hr>
+                <tr>
+                    <td></td>
+                    <td><button type="button" onClick="makeMove('270')">270<sup>o</sup></button></td>
+                    <td></td>
+                </tr>
 
-<form>
-Distance Per Move:		<input id="distance" type="text" value=1 size=4 maxlength=6><br>
-</form>
-<hr>
+            </table>
+            <hr>
+
+            <form>
+                Distance Per Move: <input id="distance" type="text" value=1
+                    size=4 maxlength=6><br>
+            </form>
+            <hr>
 
 
-                           <!-- fields displaying current game state -->
-<form>
-<br><br>
-Location:       <input id="location" type="text" size=6 maxlength=8><br>
-Energy:         <input id="energy" type="text" size=6 maxlength=6><br>
-Supplies:       <input id="supplies" type="text" size=6 maxlength=6><br>
-Credits:        <input id="credits" type="text" size=6 maxlength=6><br>
-Message:        <input id="message" type="text" size=80 maxlength=80><br>
-Map Size:       <input id="mapSizeX" type="text" size=6 maxlength=10> x <input id="mapSizeY" type="text" size=6 maxlength=10>
-</form>
+            <!-- fields displaying current game state -->
+            <form>
+                <br><br>
+                Location: <input id="location" type="text" size=6 maxlength=8><br>
+                Energy: <input id="energy" type="text" size=6 maxlength=6><br>
+                Supplies: <input id="supplies" type="text" size=6 maxlength=6><br>
+                Credits: <input id="credits" type="text" size=6 maxlength=6><br>
+                Message: <input id="message" type="text" size=80 maxlength=80><br>
+                Map Size: <input id="mapSizeX" type="text" size=6 maxlength=10>
+                x <input id="mapSizeY" type="text" size=6 maxlength=10>
+            </form>
 
-<script src="jsFunctions.js"></script>
-<script src="stubFunctions.js"></script>
-<script src="utilites.js"></script>
-<script src="Configuration.js"></script>
-<script src="Sensors.js"></script>
+            <script src="jsFunctions.js"></script>
+            <script src="stubFunctions.js"></script>
+            <script src="utilites.js"></script>
+            <script src="Configuration.js"></script>
+            <script src="Sensors.js"></script>
 
-</html>
+        </html>
