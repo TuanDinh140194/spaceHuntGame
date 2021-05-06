@@ -104,7 +104,7 @@ function makeMove(direction) {
 			break;
 	}
 
-	checkStatus()
+	checkStatus() // should this function contain the code below?
 	if (document.forms[1].energy.value <= 0 && configuration[4].value === false) {
 		alert("Game Over! You ran out of energy!");
 		setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
