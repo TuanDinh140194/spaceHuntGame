@@ -179,7 +179,7 @@ function updateValue(id, parent_value) {
 
 }
 
-function generateForm(id, className, title, obj, objName, callBack) {
+function generateForm(id, className, title, obj, objName, callBackSubmit , callBackExit) {
 
     var formWrapper = document.createElement("div");
     formWrapper.style.zIndex = "1";
@@ -260,6 +260,9 @@ function generateForm(id, className, title, obj, objName, callBack) {
         }
 
         localStorage.setItem(objName, JSON.stringify(obj));
+        if (callBackSubmit !== undefined) {
+            callBackSubmit();
+        }
     });
 
     formWrapper.appendChild(form);
@@ -474,8 +477,8 @@ function generateForm(id, className, title, obj, objName, callBack) {
 
     cancel.addEventListener("click", () => {
         formWrapper.style.display = "none";
-        if (callBack !== undefined)
-            callBack();
+        if (callBackExit !== undefined)
+            callBackExit();
     });
 
     div4.appendChild(submitBtn);
@@ -519,19 +522,12 @@ if (localStorage.getItem("configuration") !== null) {
 }
 
 
-document.getElementById("mapSizeX").value = configuration[0].value.x;
-document.getElementById("mapSizeY").value = configuration[0].value.y;
-document.getElementById("energy").value = configuration[1].value;
-document.getElementById("supplies").value = configuration[2].value;
-document.getElementById("credits").value = configuration[5].value;
-document.getElementById("location").value = "0,0";
-
 
 var buttonConfig = document.createElement("button");
 buttonConfig.innerHTML = "Configuration";
 document.body.appendChild(buttonConfig);
 
-var formConfig = generateForm("form-configure", "game-form", "Configuration Form", configuration, "configuration", exitConfiguration);
+var formConfig = generateForm("form-configure", "game-form", "Configuration Form", configuration, "configuration", whenSubmit, exitConfiguration);
 
 formConfig.style.width = "400px";
 formConfig.style.margin = "auto auto auto auto";
@@ -550,7 +546,16 @@ function exitConfiguration() {
     document.getElementById("energy").value = configuration[1].value;
     document.getElementById("supplies").value = configuration[2].value;
     document.getElementById("credits").value = configuration[5].value;
-    document.getElementById("location").value = "0,0";
     formConfig.style.display = "none";
 }
+
+function whenSubmit() {
+    document.getElementById("mapSizeX").value = configuration[0].value.x;
+    document.getElementById("mapSizeY").value = configuration[0].value.y;
+    document.getElementById("energy").value = configuration[1].value;
+    document.getElementById("supplies").value = configuration[2].value;
+    document.getElementById("credits").value = configuration[5].value;
+
+}
+
 

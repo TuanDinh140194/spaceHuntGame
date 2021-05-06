@@ -1,0 +1,24 @@
+.control {
+    position: relative;
+    width: 30%;
+    display: block;
+}
+.control__top, .control__bottom{
+    display: grid;
+    grid-template-columns: auto;
+   justify-items: center;
+}
+
+.control__middle {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+}
+
+.status {
+    position: relative;
+    width: 30%;
+    display: block;
+}
+
+
