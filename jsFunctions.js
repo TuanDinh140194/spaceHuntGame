@@ -18,8 +18,8 @@ function initializeState() {
 	document.getElementById("mapSizeX").value = configuration[0].value.x;
 	document.getElementById("mapSizeY").value = configuration[0].value.y;
 	document.getElementById("energy").value = configuration[1].value;
-	document.getElementById("supplies").value = configuration[2].value;
-	document.getElementById("credits").value = configuration[5].value;
+	document.getElementById("supplies").value = configuration[5].value;
+	document.getElementById("credits").value = configuration[2].value;
 	document.getElementById("location").value = "1,1";
 
 }
