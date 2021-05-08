@@ -1,4 +1,4 @@
-
+const CELL_SIZE = 50;
 
 function generateElemFrom(parent, id, value) {
 
@@ -179,8 +179,8 @@ function updateValue(id, parent_value) {
 
 }
 
-function generateForm(id, className, title, obj, objName, callBackSubmit , callBackExit) {
-
+function generateForm(id, className, title, obj, objName, callBackExit, callBackSubmit) {
+    console.log(callBackSubmit);
     var formWrapper = document.createElement("div");
     formWrapper.style.zIndex = "1";
     formWrapper.setAttribute("id", id);
@@ -260,9 +260,12 @@ function generateForm(id, className, title, obj, objName, callBackSubmit , callB
         }
 
         localStorage.setItem(objName, JSON.stringify(obj));
+
+      
         if (callBackSubmit !== undefined) {
             callBackSubmit();
         }
+
     });
 
     formWrapper.appendChild(form);
@@ -522,25 +525,8 @@ if (localStorage.getItem("configuration") !== null) {
 }
 
 
-
-var buttonConfig = document.createElement("button");
-buttonConfig.innerHTML = "Configuration";
-document.body.appendChild(buttonConfig);
-
-var formConfig = generateForm("form-configure", "game-form", "Configuration Form", configuration, "configuration", whenSubmit, exitConfiguration);
-
-formConfig.style.width = "400px";
-formConfig.style.margin = "auto auto auto auto";
-formConfig.style.border = "1px solid black";
-formConfig.style.display = "none";
-
-document.body.appendChild(formConfig);
-
-buttonConfig.addEventListener("click", function () {
-    formConfig.style.display = "block";
-});
-
 function exitConfiguration() {
+   
     document.getElementById("mapSizeX").value = configuration[0].value.x;
     document.getElementById("mapSizeY").value = configuration[0].value.y;
     document.getElementById("energy").value = configuration[1].value;
@@ -555,7 +541,16 @@ function whenSubmit() {
     document.getElementById("energy").value = configuration[1].value;
     document.getElementById("supplies").value = configuration[2].value;
     document.getElementById("credits").value = configuration[5].value;
-
+  //  renderMap.render();
 }
+
+var formConfig = generateForm("form-configure", "game-form", "Configuration Form", configuration, "configuration", whenSubmit, exitConfiguration);
+
+formConfig.style.width = "400px";
+formConfig.style.margin = "auto auto auto auto";
+formConfig.style.border = "1px solid black";
+formConfig.style.display = "none";
+
+document.body.appendChild(formConfig);
 
 

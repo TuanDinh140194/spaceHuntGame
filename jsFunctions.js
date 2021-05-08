@@ -4,7 +4,7 @@
 
 
 function initializeState() {
-	alert("Initializing!");
+	//alert("Initializing!");
 	document.forms[1].location.value = "1,1";
 	document.forms[1].energy.value = configuration[1].value;
 	document.forms[1].supplies.value = configuration[2].value
@@ -105,9 +105,11 @@ function makeMove(direction) {
 		alert("Game Over! You ran out of supplies!");
 		setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
 	}
+	renderMap.moveSpaceShip(x,configuration[0].value.y - y+1, parseInt(direction));
 }
 
 
 function getRandomInt(max) {
 	return 1 + Math.floor(Math.random() * max);
 }
+
