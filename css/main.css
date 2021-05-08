@@ -160,23 +160,6 @@
     border-right: 2px solid var(--white);
     transform: rotate(45deg);
   }
-
-
-  .grid-container {
-    display:grid; 
-    grid-template-columns: auto;
-  }
-  .grid-container__footer {
-      margin: 10px;
-  }
-
-  .grid-cell {
-      align-items: center;
-      padding-left: 50px;
-      padding-top: 10px;
-      display:inline-block;
-  }
-
  
 .artifact-panel {
     width: 200px;
@@ -204,10 +187,32 @@
 /*---------------main menu form------------------*/
 .main-menu {
   display: fixed;
-  width: 30%;
+  width: 400px;
   position: relative;
+
 }
 
+.main-menu input {
+  width: 200px;
+}
+.main-menu div {
+  margin: auto auto;
+}
+
+.grid-container {
+  display:grid; 
+  grid-template-columns: auto;
+}
+.grid-container__footer {
+    margin: 10px;
+}
+
+.grid-cell {
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    display:inline-block;
+}
 
 
 
