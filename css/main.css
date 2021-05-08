@@ -1,0 +1,251 @@
+:root {
+    --white: #afafaf;
+    --red: #e31b23;
+    --bodyColor: #292a2b;
+    --borderFormEls: hsl(0, 0%, 10%);
+    --bgFormEls: hsl(0, 0%, 14%);
+    --bgFormElsFocus: hsl(0, 7%, 20%);
+
+    font-family: 'Play', sans-serif;
+    color:var(--white);
+    background-color: black;
+
+  }
+
+
+.header {
+  position: relative;
+  width: 30%;
+  z-index: 1;
+}
+.header h1 {
+  text-align: center;
+  text-shadow: 1px 1px 2px black, 0 0 25px var(--red), 0 0 5px var(--bgFormEls);
+}
+
+
+/*-------------------------------------------------*/
+
+
+.game-form {
+    background: var(--bodyColor);
+    color: var(--white);
+    border: 2px solid var(--red);
+    border-radius: 2%;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    position:relative;
+    padding: 0px 15px 15px 15px;
+    z-index: 1;
+
+}
+.game-form  h2{
+    text-align: center;
+    margin: 10px;
+    text-shadow: 1px 1px 2px black, 0 0 25px var(--red), 0 0 5px var(--bgFormEls);
+}
+
+.game-form input, button{
+   line-height: 1.5; 
+ 
+    border: 1px solid var(--red);
+    color: var(--white);
+    background: var(--bgFormEls);
+    transition: background-color 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+    transform 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+    border-radius: 10%;
+}
+
+.game-form input[type="submit"],input[type="button"],button {
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black, 0 0 25px var(--red), 0 0 5px var(--bgFormEls);
+  }
+  
+
+ .game-form input[type="submit"]:hover{
+    background: var(--red);
+ }
+
+ .game-form input[type="button"]:hover{
+    background: var(--red);
+ }
+
+ .game-form button:hover{
+    background: var(--red);
+ }
+
+/* CUSTOM CHECKBOX
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.game-form input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+  }
+  
+ .game-form input[type="checkbox"] + label {
+    position: relative;
+    display: inline-block;
+    padding-left: 2rem;
+    transition: background 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+  }
+  
+ .game-form input[type="checkbox"] + label::before,
+ .game-form input[type="checkbox"] + label::after {
+    content: '';
+    position: absolute;
+  }
+  
+ .game-form input[type="checkbox"] + label::before {
+    left: 0;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--white);
+  }
+  
+ .game-form input[type="checkbox"]:checked + label::before {
+    background: var(--red);
+  }
+  
+  .game-form input[type="checkbox"]:checked + label::after {
+    left: 4px;
+    top: 0px;
+    width: 6px;
+    height: 10px;
+    border-bottom: 2px solid var(--white);
+    border-right: 2px solid var(--white);
+    transform: rotate(45deg);
+  }
+
+
+  /* CUSTOM Radio
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.game-form input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+  }
+  
+ .game-form input[type="radio"] + label {
+    position: relative;
+    display: inline-block;
+    padding-left: 2rem;
+    transition: background 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+  }
+  
+ .game-form input[type="radio"] + label::before,
+ .game-form input[type="radio"] + label::after {
+    content: '';
+    position: absolute;
+  }
+  
+ .game-form input[type="radio"] + label::before {
+    left: 0;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--white);
+    border-radius: 50%;
+  }
+  
+ .game-form input[type="radio"]:checked + label::before {
+    background: var(--red);
+  }
+  
+  .game-form input[type="radio"]:checked + label::after {
+    left: 4px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border-bottom: 2px solid var(--white);
+    border-right: 2px solid var(--white);
+    transform: rotate(45deg);
+  }
+ 
+.artifact-panel {
+    width: 200px;
+    display: none;
+    position: fixed;
+    z-index: 3;
+    
+  }
+
+.artifact-panel__container {
+  display: grid;
+
+  justify-content: center;
+}
+
+.artifact-panel__cell {
+  margin: 10px 0 10px 0;
+}
+
+.artifact-panel__cell:hover {
+ cursor: pointer;
+}
+
+
+/*---------------main menu form------------------*/
+.main-menu {
+  display: fixed;
+  width: 400px;
+  position: relative;
+
+}
+
+.main-menu input {
+  width: 200px;
+}
+.main-menu div {
+  margin: auto auto;
+}
+
+.grid-container {
+  display:grid; 
+  grid-template-columns: auto;
+}
+.grid-container__footer {
+    margin: 10px;
+}
+
+.grid-cell {
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    display:inline-block;
+}
+
+
+
+/*----------------control -----------------------*/
+.control {
+  position: relative;
+  width: 30%;
+  display: none;
+
+}
+.control__top, .control__bottom{
+  display: grid;
+  grid-template-columns: auto;
+ justify-items: center;
+}
+
+.control__middle {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
+}
+.control__distance {
+  margin:15px;
+}
+
+
+
+.status {
+  position: relative;
+  width: 30%;
+  display: none;
+}
+
+button[innerHtml ="Deploy Sensors"] {
+  display:block
+}

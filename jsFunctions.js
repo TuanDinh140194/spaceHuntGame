@@ -4,23 +4,14 @@
 
 
 function initializeState() {
-	alert("Initializing!");
-	document.forms[1].location.value = "0,0";
-	document.forms[1].energy.value = 1000;
-	document.forms[1].supplies.value = 100.00
-	document.forms[1].credits.value = 1000;
+	//alert("Initializing!");
+	document.forms[1].location.value = "1,1";
+	document.forms[1].energy.value = configuration[1].value;
+	document.forms[1].supplies.value = configuration[2].value
+	document.forms[1].credits.value = configuration[5].value;
 	document.forms[1].message.value = "[NULL]";
-	document.forms[1].mapSizeX.value = 128;
-	document.forms[1].mapSizeY.value = 128;
-
-	//Load from configuration 
-
-	document.getElementById("mapSizeX").value = configuration[0].value.x;
-	document.getElementById("mapSizeY").value = configuration[0].value.y;
-	document.getElementById("energy").value = configuration[1].value;
-	document.getElementById("supplies").value = configuration[5].value;
-	document.getElementById("credits").value = configuration[2].value;
-	document.getElementById("location").value = "1,1";
+	document.forms[1].mapSizeX.value = configuration[0].value.x;
+	document.forms[1].mapSizeY.value =  configuration[0].value.y;
 
 }
 
@@ -114,9 +105,11 @@ function makeMove(direction) {
 		alert("Game Over! You ran out of supplies!");
 		setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
 	}
+	renderMap.moveSpaceShip(x,configuration[0].value.y - y+1, parseInt(direction));
 }
 
 
 function getRandomInt(max) {
 	return 1 + Math.floor(Math.random() * max);
 }
+
