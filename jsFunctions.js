@@ -74,8 +74,24 @@ function makeMove(direction) {
             x = getRandomInt(configuration[0].value.x);
             y = getRandomInt(configuration[0].value.y);
         }
-
+		document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";
     }
+	else {
+		switch (direction) {
+			case '0':
+				document.forms[1].message.value = item = "Moving Eastbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+			case '90':
+				document.forms[1].message.value = item = "Moving Northbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+			case '180':
+				document.forms[1].message.value = item = "Moving Westbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+			case '270':
+				document.forms[1].message.value = item = "Moving Southbound " + parseInt(document.forms[0].distance.value) + " time(s).";
+				break;
+		}
+	}
 
 	checkLocation();
 	document.forms[1].location.value = x.toString() + "," + y.toString();
@@ -89,21 +105,7 @@ function makeMove(direction) {
 
 
 	document.forms[1].supplies.value -= 2 * parseInt(document.forms[0].distance.value)// Two percent for later: (document.forms[1].supplies.value * 0.02);
-	switch (direction) {
-		case '0':
-			document.forms[1].message.value = item = "Moving Eastbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-		case '90':
-			document.forms[1].message.value = item = "Moving Northbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-		case '180':
-			document.forms[1].message.value = item = "Moving Westbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-		case '270':
-			document.forms[1].message.value = item = "Moving Southbound " + parseInt(document.forms[0].distance.value) + " time(s).";
-			break;
-	}
-
+	
 	checkStatus() // should this function contain the code below?
 	if (document.forms[1].energy.value <= 0 && configuration[4].value === false) {
 		alert("Game Over! You ran out of energy!");
