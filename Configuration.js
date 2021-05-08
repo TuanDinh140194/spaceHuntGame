@@ -556,6 +556,6 @@ function whenSubmit() {
     document.getElementById("supplies").value = configuration[2].value;
     document.getElementById("credits").value = configuration[5].value;
 
-}s
+}
 
 
