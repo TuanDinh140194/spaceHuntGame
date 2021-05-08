@@ -90,12 +90,13 @@ document.body.appendChild(buttonConfig);
 
 
 buttonConfig.addEventListener("click", function () {
-    SIZE = document.getElementById("mapSizeX").value
+    SIZE1 = document.getElementById("mapSizeX").value
+    SIZE2 = document.getElementById("mapSizeY").value
     mapArr = arrayArt()
     let myTable = `<table id='map'>` + '\n'
-    for (let i=0; i < SIZE; i++) {
+    for (let i=0; i < SIZE1; i++) {
         myTable += "<tr>" + '\n';
-        for(let j=0; j< SIZE; j++) {
+        for(let j=0; j< SIZE2; j++) {
             let cellColor = "white"
             if (mapArr[i][j] == 1) {
                 cellColor = "green"
