@@ -57,7 +57,7 @@ class Map {
                 cell.style.margin = 0;
                 cell.style.border = "1px solid red";
                
-                switch(this.celestial[j][i]){
+                switch(this.celestial[i][j]){
                     case 1: {
                         //Planet
                         var img = document.createElement("img");
@@ -67,7 +67,7 @@ class Map {
                         img.style.left = "5px";
                         img.style.top = "5px";
                         img.setAttribute("src", "img/planet.png");
-                        img.setAttribute("id", "cell-" + (j+1) + "-" + (i+1));
+                        img.setAttribute("id", "cell-" + ( j +1 ) + "-" + (this.height -i ));
                         cell.appendChild(img);
                     }break;
                     case 2: {
@@ -79,7 +79,7 @@ class Map {
                         img.style.left = "5px";
                         img.style.top = "5px";
                         img.setAttribute("src", "img/asteroid.png");
-                        img.setAttribute("id", "cell-" + (j+1) + "-" + (i+1));
+                        img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height -i));
                         cell.appendChild(img);
                     }break;
                     case 3: {
@@ -91,7 +91,7 @@ class Map {
                         img.style.left = "5px";
                         img.style.top = "5px";
                         img.setAttribute("src", "img/space-station.png");
-                        img.setAttribute("id", "cell-" + (j+1) + "-" + (i+1));
+                        img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i));
                         cell.appendChild(img);
                     }break;
                     case 4: {
@@ -103,7 +103,7 @@ class Map {
                         img.style.left = "5px";
                         img.style.top = "5px";
                         img.setAttribute("src", "img/wormholes.png");
-                        img.setAttribute("id", "cell-" + (j+1) + "-" + (i+1));
+                        img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i ));
                         cell.appendChild(img);
                     }break;
                 }
@@ -122,7 +122,7 @@ class Map {
     }
 
     moveSpaceShip(x, y, angle) {
-        let cell = $id("cell-" + x + "-"+ y);
+        let cell = $id("cell-" + x + "-"+ (this.height - y +1));
         if (cell !== null) {
             cell.style.display = "block";
         }

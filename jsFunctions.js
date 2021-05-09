@@ -57,12 +57,21 @@ function makeMove(direction) {
 	}
 
 	//wormhole behavior 
-	if (x <= 0 || x > configuration[0].value.x || y <= 0 || y > configuration[0].value.y) {
-        if (configuration[3].value === wormhole_behavior.goto_fixed_CP) {
+	if (x <= 0 || x > configuration[0].value.x )
+	{
+		if (configuration[3].value === wormhole_behavior.goto_fixed_CP) {
 			x = configuration[0].value.x ;
-			y =  configuration[0].value.y ;
+
         } else {
             x = getRandomInt(configuration[0].value.x);
+        }
+		document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";
+	}
+	else 
+	if (y <= 0 || y > configuration[0].value.y) {
+        if (configuration[3].value === wormhole_behavior.goto_fixed_CP) {
+			y =  configuration[0].value.y ;
+        } else {
             y = getRandomInt(configuration[0].value.y);
         }
 		document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";

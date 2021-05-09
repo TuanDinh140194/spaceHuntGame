@@ -37,8 +37,7 @@ document.getElementById("play-game").addEventListener("click", function () {
       
     var main = document.getElementById("main-menu");
     main.style.display = "none";
-    if ( $id("map") === null)
-        chooseMap.click();
+
     ship = new Ship(configuration);
     renderMap = new Map("game-map","game-map",configuration[0].value.x, configuration[0].value.y, configuration, ship,celestial);
     renderMap.render();
@@ -48,7 +47,7 @@ document.getElementById("play-game").addEventListener("click", function () {
 
     $id("control").appendChild(sensor);
     sensor.style.display= "block";
-    $id("map").style.display = "none";
+   // $id("map").style.display = "none";
 
 
 
