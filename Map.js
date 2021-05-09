@@ -66,6 +66,7 @@ class Map {
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
                         img.setAttribute("src", "img/planet.png");
+                        img.setAttribute("type", "planet");
                         img.setAttribute("id", "cell-" + ( j +1 ) + "-" + (this.height -i ));
                         cell.appendChild(img);
                     }break;
@@ -76,6 +77,7 @@ class Map {
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
                         img.setAttribute("src", "img/asteroid.png");
+                        img.setAttribute("type", "asteroid");
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height -i));
                         cell.appendChild(img);
                     }break;
@@ -86,6 +88,7 @@ class Map {
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
                         img.setAttribute("src", "img/space-station.png");
+                        img.setAttribute("type", "space-station");
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i));
                         cell.appendChild(img);
                     }break;
@@ -96,6 +99,7 @@ class Map {
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
                         img.setAttribute("src", "img/wormholes.png");
+                        img.setAttribute("type", "wormhole");
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i ));
                         cell.appendChild(img);
                     }break;
@@ -115,10 +119,16 @@ class Map {
     }
 
     moveSpaceShip(x, y, angle) {
+        
+        let message = "";
+
         let cell = $id("cell-" + x + "-"+ (this.height - y +1));
+        
         if (cell !== null) {
             cell.style.display = "block";
+            message =  cell.getAttribute("type");
         }
+
         if ($id("cell-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1)) === null
         && $id("start-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1)) === null
         )
@@ -133,13 +143,15 @@ class Map {
                 td.appendChild(img);
             }
     
-            console.log("td-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1));
+          //  console.log("td-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1));
         }
 
         this.ship.setLocation(x, y, angle);
 
         this.elem.style.left = (window.innerWidth / 2 - x * CELL_SIZE) + "px";
         this.elem.style.top = (window.innerHeight / 2 - y * CELL_SIZE) + "px";
+
+        return message;
     }
 }
 

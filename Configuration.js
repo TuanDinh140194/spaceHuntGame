@@ -512,16 +512,23 @@ var configuration = [
         wormhole_behavior.goto_random_CP
         ]
     },
+    { id: "specific_cp", name: "Specific CP (X,Y)", value: { x: 50, y: 50 } },
 
     { id: "die", name: "Never die", value: false },
 
     { id: "supplies", name: "Initial Supplies", value: 100, unit: "%" },
 
+
+
+
 ];
 
 
 if (localStorage.getItem("configuration") !== null) {
-    configuration = JSON.parse(localStorage.getItem("configuration"));
+    var configuration_temp = JSON.parse(localStorage.getItem("configuration"));
+    if (configuration.length === configuration_temp.length) {
+        configuration = configuration_temp;
+    }
 }
 
 
@@ -530,8 +537,8 @@ function exitConfiguration() {
     document.getElementById("mapSizeX").value = configuration[0].value.x;
     document.getElementById("mapSizeY").value = configuration[0].value.y;
     document.getElementById("energy").value = configuration[1].value;
-	document.getElementById("supplies").value = configuration[2].value;
-    document.getElementById("credits").value = configuration[5].value;
+	document.getElementById("supplies").value = configuration[6].value;
+    document.getElementById("credits").value = configuration[2].value;
     formConfig.style.display = "none";
 }
 
@@ -539,8 +546,8 @@ function whenSubmit() {
     document.getElementById("mapSizeX").value = configuration[0].value.x;
     document.getElementById("mapSizeY").value = configuration[0].value.y;
     document.getElementById("energy").value = configuration[1].value;
-    document.getElementById("supplies").value = configuration[2].value;
-    document.getElementById("credits").value = configuration[5].value;
+    document.getElementById("supplies").value = configuration[6].value;
+    document.getElementById("credits").value = configuration[2].value;
   //  renderMap.render();
 }
 

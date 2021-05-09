@@ -7,11 +7,11 @@ function initializeState() {
 	//alert("Initializing!");
 	document.forms[1].location.value = "1,1";
 	document.forms[1].energy.value = configuration[1].value;
-	document.forms[1].supplies.value = configuration[2].value
-	document.forms[1].credits.value = configuration[5].value;
+	document.forms[1].supplies.value = configuration[6].value
+	document.forms[1].credits.value = configuration[2].value;
 	document.forms[1].message.value = "[NULL]";
 	document.forms[1].mapSizeX.value = configuration[0].value.x;
-	document.forms[1].mapSizeY.value =  configuration[0].value.y;
+	document.forms[1].mapSizeY.value = configuration[0].value.y;
 
 }
 
@@ -24,7 +24,7 @@ function makeMove(direction) {
 	let coords = document.forms[1].location.value.split(',');
 	let x = Number(coords[0]);
 	let y = Number(coords[1]);
-	
+
 	switch (direction) {
 		case '0':
 			// if (x >= document.forms[1].mapSizeX.value) {
@@ -57,25 +57,11 @@ function makeMove(direction) {
 	}
 
 	//wormhole behavior 
-	if (x <= 0 || x > configuration[0].value.x )
-	{
-		if (configuration[3].value === wormhole_behavior.goto_fixed_CP) {
-			x = configuration[0].value.x ;
-
-        } else {
-            x = getRandomInt(configuration[0].value.x);
-        }
-		document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";
+	if ((x <= 0 || x > configuration[0].value.x) || (y <= 0 || y > configuration[0].value.y)) {
+		var [x_new, y_new] = wormholeBehavior(x,y);
+		x = x_new;
+		y = y_new;
 	}
-	else 
-	if (y <= 0 || y > configuration[0].value.y) {
-        if (configuration[3].value === wormhole_behavior.goto_fixed_CP) {
-			y =  configuration[0].value.y ;
-        } else {
-            y = getRandomInt(configuration[0].value.y);
-        }
-		document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";
-    }
 	else {
 		switch (direction) {
 			case '0':
@@ -105,20 +91,68 @@ function makeMove(direction) {
 
 
 	document.forms[1].supplies.value -= 2 * parseInt(document.forms[0].distance.value)// Two percent for later: (document.forms[1].supplies.value * 0.02);
-	
+
 	checkStatus() // should this function contain the code below?
 	if (document.forms[1].energy.value <= 0 && configuration[4].value === false) {
-		alert("Game Over! You ran out of energy!");
-		setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
+		gameOver("You ran out of energy!");
+		
 	} else if (document.forms[1].supplies.value <= 0) {
-		alert("Game Over! You ran out of supplies!");
-		setTimeout("location.reload(true);", 500); // Half a second after clearing alert the page will refresh.
+		gameOver("You ran out of supplies!");
+		
 	}
-	renderMap.moveSpaceShip(x,configuration[0].value.y - y+1, parseInt(direction));
+
+	let type = renderMap.moveSpaceShip(x, configuration[0].value.y - y + 1, parseInt(direction));
+	console.log(type, typeof type);
+	
+	while (type === "wormhole") {
+
+		let [x_new, y_new] = wormholeBehavior(x,y);
+		x = x_new;
+		y = y_new;
+		document.forms[1].location.value = x.toString() + "," + y.toString();
+		
+		type = renderMap.moveSpaceShip(x, configuration[0].value.y - y + 1, parseInt(direction));
+	}
+	if (type ==="planet" || type ==="asteroid" || type ==="space-station") {
+		gameOver("You got a collision with the " + type + "!");
+		
+	}
 }
 
 
 function getRandomInt(max) {
 	return 1 + Math.floor(Math.random() * max);
+}
+
+function wormholeBehavior(x, y) {
+	//wormhole behavior 
+	if (configuration[3].value === wormhole_behavior.goto_fixed_CP) {
+		x = configuration[4].value.x;
+		y = configuration[4].value.y;
+
+	} else {
+		x = getRandomInt(configuration[0].value.x);
+		y = getRandomInt(configuration[0].value.y);
+	}
+	document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";
+	
+	return [x,y];
+}
+
+function gameOver(message){
+	if ($id("alert") !== null ) {
+		var m = $id("alert");
+		m.innerHTML = "<p>"+message + "<br>" +"Game over!" + "</p>";
+		m.style.display = "block";
+		setTimeout(function() {
+			m.style.display = "none";
+		  }, (message.length*200));
+
+		setTimeout("location.reload(true);", (message.length*200));
+		$id("move-up").style.display ="none";
+		$id("move-down").style.display ="none";
+		$id("move-left").style.display ="none";
+		$id("move-right").style.display ="none";
+	}
 }
 
