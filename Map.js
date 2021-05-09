@@ -56,7 +56,8 @@ class Map {
                 cell.style.padding = 0;
                 cell.style.margin = 0;
                 cell.style.border = "1px solid red";
-               
+                cell.style.textAlign = "center";
+                cell.setAttribute("id", "td-" + ( j +1 ) + "-" + (this.height -i ));
                 switch(this.celestial[i][j]){
                     case 1: {
                         //Planet
@@ -64,8 +65,6 @@ class Map {
                         img.style.width = (CELL_SIZE-15) + "px";
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
-                        img.style.left = "5px";
-                        img.style.top = "5px";
                         img.setAttribute("src", "img/planet.png");
                         img.setAttribute("id", "cell-" + ( j +1 ) + "-" + (this.height -i ));
                         cell.appendChild(img);
@@ -76,8 +75,6 @@ class Map {
                         img.style.width = (CELL_SIZE-15) + "px";
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
-                        img.style.left = "5px";
-                        img.style.top = "5px";
                         img.setAttribute("src", "img/asteroid.png");
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height -i));
                         cell.appendChild(img);
@@ -88,8 +85,6 @@ class Map {
                         img.style.width = (CELL_SIZE-15) + "px";
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
-                        img.style.left = "5px";
-                        img.style.top = "5px";
                         img.setAttribute("src", "img/space-station.png");
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i));
                         cell.appendChild(img);
@@ -100,8 +95,6 @@ class Map {
                         img.style.width = (CELL_SIZE-15) + "px";
                         img.style.height = (CELL_SIZE-15) + "px";
                         img.style.display = "none";
-                        img.style.left = "5px";
-                        img.style.top = "5px";
                         img.setAttribute("src", "img/wormholes.png");
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i ));
                         cell.appendChild(img);
@@ -126,7 +119,25 @@ class Map {
         if (cell !== null) {
             cell.style.display = "block";
         }
+        if ($id("cell-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1)) === null
+        && $id("start-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1)) === null
+        )
+        {
+            let td = $id("td-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1) );
+            if (td !== null) {
+                let img = document.createElement("img");
+                img.style.width = (CELL_SIZE-25) + "px";
+                img.style.height = (CELL_SIZE-25) + "px";
+                img.setAttribute("src", "img/glow_start.png");
+                img.setAttribute("id", "start-" + this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1));
+                td.appendChild(img);
+            }
+    
+            console.log("td-"+this.ship.x_of_map+ "-"+ (this.height - this.ship.y_of_map + 1));
+        }
+
         this.ship.setLocation(x, y, angle);
+
         this.elem.style.left = (window.innerWidth / 2 - x * CELL_SIZE) + "px";
         this.elem.style.top = (window.innerHeight / 2 - y * CELL_SIZE) + "px";
     }
