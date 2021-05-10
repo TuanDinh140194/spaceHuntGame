@@ -4,15 +4,19 @@
     Collision when the space scraft enter the CP have the celestial artifact */
 
 var SIZE = document.getElementById("mapSizeX").value
-const Wormholes = 4
+/*const Wormholes = 4
 const Planets = 1
 const Asteroids = 2
-const SpaceStations = 3
+const SpaceStations = 3*/
 
 
 
 /*Array of Celestial Artifact location*/
 function arrayArt (){
+    let Wormholes = 4
+    let Planets = 1
+    let Asteroids = 2
+    let SpaceStations = 3
     let arrayObj = [0,1,2,3,4,5]
     let numberWormHoles = SIZE 
     let numberPlanets = SIZE * 2
@@ -69,11 +73,11 @@ function arrayArt (){
 
 /*Array occurence*/
 
-let celestial = arrayArt()
+celestial = arrayArt()
 
 
 /*Show Celestial Artifact Location*/
-let myTable = '';
+myTable = '';
 for (let i = 0; i < SIZE; i++){
     for(let j = 0; j < SIZE; j++){
         myTable += (celestial[i][j]) + "|"
@@ -107,8 +111,11 @@ buttonConfig.addEventListener("click", function () {
             else if (mapArr[i][j] == 3) {
                 cellColor = "pink"
             }
-            if (mapArr[i][j] == 4) {
+            else if (mapArr[i][j] == 4) {
                 cellColor = "black"
+            }
+            else{
+                cellColor = "white"
             }
             myTable += '<td class="cell" id=' + i + '-' + j+ '"' + ' value=' + '"'+ mapArr[i][j]  + '"' + ' style="background-color:' + cellColor + '"'+   ' >'
             myTable += mapArr[i][j]
