@@ -3,7 +3,7 @@
     Sensors verify the celestial artifact within 2 CP of the Artifact
     Collision when the space scraft enter the CP have the celestial artifact */
 
-var SIZE = document.getElementById("mapSizeX").value
+var SIZE = 128//document.getElementById("mapSizeX").value
 /*const Wormholes = 4
 const Planets = 1
 const Asteroids = 2
@@ -13,6 +13,7 @@ const SpaceStations = 3*/
 
 /*Array of Celestial Artifact location*/
 function arrayArt (){
+    //var SIZE = document.getElementById("mapSizeX").value
     let Wormholes = 4
     let Planets = 1
     let Asteroids = 2
@@ -68,6 +69,7 @@ function arrayArt (){
                 arrayObj[SpaceStations] = 0*/
         }
     }
+    
     return arr    
 }
 
@@ -86,8 +88,6 @@ for (let i = 0; i < SIZE; i++){
 }
 
 
-console.log(myTable)
-
 var buttonConfig = document.createElement("button");
 buttonConfig.innerHTML = "Map";
 document.body.appendChild(buttonConfig);
@@ -96,41 +96,42 @@ document.body.appendChild(buttonConfig);
 buttonConfig.addEventListener("click", function () {
     SIZE1 = document.getElementById("mapSizeX").value
     SIZE2 = document.getElementById("mapSizeY").value
-    mapArr = arrayArt()
-    let myTable = `<table id='map'>` + '\n'
+    //mapArr = arrayArt()
+    //celestial = arrayArt()
+    let myTable1 = `<table id='map'>` + '\n'
     for (let i=0; i < SIZE1; i++) {
-        myTable += "<tr>" + '\n';
+        myTable1 += "<tr>" + '\n';
         for(let j=0; j< SIZE2; j++) {
             let cellColor = "white"
-            if (mapArr[i][j] == 1) {
+            if (celestial[i][j] == 1) {
                 cellColor = "green"
             }
-            else if (mapArr[i][j] == 2) {
+            else if (celestial[i][j] == 2) {
                 cellColor = "blue"
             }
-            else if (mapArr[i][j] == 3) {
+            else if (celestial[i][j] == 3) {
                 cellColor = "pink"
             }
-            else if (mapArr[i][j] == 4) {
+            else if (celestial[i][j] == 4) {
                 cellColor = "black"
             }
             else{
                 cellColor = "white"
             }
-            myTable += '<td class="cell" id=' + i + '-' + j+ '"' + ' value=' + '"'+ mapArr[i][j]  + '"' + ' style="background-color:' + cellColor + '"'+   ' >'
-            myTable += mapArr[i][j]
-            myTable += '</td>' + '\n'
+            myTable1 += '<td class="cell" id=' + i + '-' + j+ '"' + ' value=' + '"'+ celestial[i][j]  + '"' + ' style="background-color:' + cellColor + '"'+   ' >'
+            myTable1 += celestial[i][j]
+            myTable1 += '</td>' + '\n'
         }
-        myTable += '</td>' + '\n'
+        myTable1 += '</td>' + '\n'
     }
-    myTable += '</table>' + '\n'
+    myTable1 += '</table>' + '\n'
     if (document.getElementById("my-map"))
-        document.getElementById("my-map").innerHTML = myTable;
+        document.getElementById("my-map").innerHTML = myTable1;
     else {
         var myMap = document.createElement("div");
         myMap.setAttribute("id", "my-map");
-
-        myMap.innerHTML = myTable;
+        
+        myMap.innerHTML = myTable1;
         document.body.appendChild(myMap);
     }
 
