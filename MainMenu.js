@@ -33,7 +33,7 @@ document.getElementById("configuration").addEventListener("click", function () {
 
 document.getElementById("play-game").addEventListener("click", function () {
     SIZE = document.getElementById("mapSizeX").value
-    celestial = arrayArt();
+    //celestial = arrayArt();
       
     var main = document.getElementById("main-menu");
     main.style.display = "none";
