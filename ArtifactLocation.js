@@ -59,14 +59,7 @@ function arrayArt (){
                 }
             }
             arr[i][j] = arrayObj[choosen]
-            /*if (numberWormHoles <= 0)
-                arrayObj[Wormholes] = 0
-            if (numberPlanets <= 0)
-                arrayObj[Planets] = 0      
-            if (numberAsteroids <= 0)
-                arrayObj[Asteroids] = 0         
-            if (numberSpaceStations <= 0)
-                arrayObj[SpaceStations] = 0*/
+            
         }
     }
     
@@ -102,29 +95,30 @@ buttonConfig.addEventListener("click", function () {
     for (let i=0; i < SIZE1; i++) {
         myTable1 += "<tr>" + '\n';
         for(let j=0; j< SIZE2; j++) {
-            let cellColor = "white"
-            if (celestial[i][j] == 1) {
-                cellColor = "green"
+            let cellColor = "black"
+            
+            myTable1 += '<td class="cell" id=' + i + '-' + j+ '"' + ' value=' + '"'+ celestial[i][j]  + '"' +' style="background-color:' + cellColor + '"'+   ' >'
+            
+            if(celestial[i][j] == 1){
+                myTable1 += "<img width='20' height='20' src='img/planet.png'/>"
             }
             else if (celestial[i][j] == 2) {
-                cellColor = "blue"
+                myTable1 += "<img width='20' height='20' src='img/asteroid.png'/>"
             }
             else if (celestial[i][j] == 3) {
-                cellColor = "pink"
+                myTable1 += "<img width='20' height='20' src='img/space-station.png'/>"
             }
             else if (celestial[i][j] == 4) {
-                cellColor = "black"
+                myTable1 += "<img width='20' height='20' src='img/wormholes.png'/>"
             }
-            else{
-                cellColor = "white"
-            }
-            myTable1 += '<td class="cell" id=' + i + '-' + j+ '"' + ' value=' + '"'+ celestial[i][j]  + '"' + ' style="background-color:' + cellColor + '"'+   ' >'
-            myTable1 += celestial[i][j]
-            myTable1 += '</td>' + '\n'
+            else
+                myTable1 += "<img width='20' height='20' src='img/paul-volkmer-qVotvbsuM_c-unsplash1.jpg'/>"
+           
         }
         myTable1 += '</td>' + '\n'
     }
     myTable1 += '</table>' + '\n'
+
     if (document.getElementById("my-map"))
         document.getElementById("my-map").innerHTML = myTable1;
     else {
