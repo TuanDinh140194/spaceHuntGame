@@ -33,10 +33,15 @@ document.getElementById("configuration").addEventListener("click", function () {
 
 document.getElementById("play-game").addEventListener("click", function () {
     SIZE = document.getElementById("mapSizeX").value
-    celestial = arrayArt();
+    //celestial = arrayArt();
       
     var main = document.getElementById("main-menu");
     main.style.display = "none";
+	
+	if(formConfig.style.display === "block") {
+	  whenSubmit();
+	  formConfig.style.display = "none";
+	}
 
     ship = new Ship(configuration);
     renderMap = new Map("game-map","game-map",configuration[0].value.x, configuration[0].value.y, configuration, ship,celestial);

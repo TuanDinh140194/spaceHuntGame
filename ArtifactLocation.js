@@ -3,7 +3,7 @@
     Sensors verify the celestial artifact within 2 CP of the Artifact
     Collision when the space scraft enter the CP have the celestial artifact */
 
-var SIZE = document.getElementById("mapSizeX").value
+var SIZE = 128//document.getElementById("mapSizeX").value
 /*const Wormholes = 4
 const Planets = 1
 const Asteroids = 2
@@ -13,6 +13,7 @@ const SpaceStations = 3*/
 
 /*Array of Celestial Artifact location*/
 function arrayArt (){
+    //var SIZE = document.getElementById("mapSizeX").value
     let Wormholes = 4
     let Planets = 1
     let Asteroids = 2
@@ -58,16 +59,10 @@ function arrayArt (){
                 }
             }
             arr[i][j] = arrayObj[choosen]
-            /*if (numberWormHoles <= 0)
-                arrayObj[Wormholes] = 0
-            if (numberPlanets <= 0)
-                arrayObj[Planets] = 0      
-            if (numberAsteroids <= 0)
-                arrayObj[Asteroids] = 0         
-            if (numberSpaceStations <= 0)
-                arrayObj[SpaceStations] = 0*/
+            
         }
     }
+    
     return arr    
 }
 
@@ -86,8 +81,6 @@ for (let i = 0; i < SIZE; i++){
 }
 
 
-console.log(myTable)
-
 var buttonConfig = document.createElement("button");
 buttonConfig.innerHTML = "Map";
 document.body.appendChild(buttonConfig);
@@ -96,41 +89,43 @@ document.body.appendChild(buttonConfig);
 buttonConfig.addEventListener("click", function () {
     SIZE1 = document.getElementById("mapSizeX").value
     SIZE2 = document.getElementById("mapSizeY").value
-    mapArr = arrayArt()
-    let myTable = `<table id='map'>` + '\n'
+    //mapArr = arrayArt()
+    //celestial = arrayArt()
+    let myTable1 = `<table id='map'>` + '\n'
     for (let i=0; i < SIZE1; i++) {
-        myTable += "<tr>" + '\n';
+        myTable1 += "<tr>" + '\n';
         for(let j=0; j< SIZE2; j++) {
-            let cellColor = "white"
-            if (mapArr[i][j] == 1) {
-                cellColor = "green"
+            let cellColor = "black"
+            
+            myTable1 += '<td class="cell" id=' + i + '-' + j+ '"' + ' value=' + '"'+ celestial[i][j]  + '"' +' style="background-color:' + cellColor + '"'+   ' >'
+            
+            if(celestial[i][j] == 1){
+                myTable1 += "<img width='20' height='20' src='img/planet.png'/>"
             }
-            else if (mapArr[i][j] == 2) {
-                cellColor = "blue"
+            else if (celestial[i][j] == 2) {
+                myTable1 += "<img width='20' height='20' src='img/asteroid.png'/>"
             }
-            else if (mapArr[i][j] == 3) {
-                cellColor = "pink"
+            else if (celestial[i][j] == 3) {
+                myTable1 += "<img width='20' height='20' src='img/space-station.png'/>"
             }
-            else if (mapArr[i][j] == 4) {
-                cellColor = "black"
+            else if (celestial[i][j] == 4) {
+                myTable1 += "<img width='20' height='20' src='img/wormholes.png'/>"
             }
-            else{
-                cellColor = "white"
-            }
-            myTable += '<td class="cell" id=' + i + '-' + j+ '"' + ' value=' + '"'+ mapArr[i][j]  + '"' + ' style="background-color:' + cellColor + '"'+   ' >'
-            myTable += mapArr[i][j]
-            myTable += '</td>' + '\n'
+            else
+                myTable1 += "<img width='20' height='20' src='img/paul-volkmer-qVotvbsuM_c-unsplash1.jpg'/>"
+           
         }
-        myTable += '</td>' + '\n'
+        myTable1 += '</td>' + '\n'
     }
-    myTable += '</table>' + '\n'
+    myTable1 += '</table>' + '\n'
+
     if (document.getElementById("my-map"))
-        document.getElementById("my-map").innerHTML = myTable;
+        document.getElementById("my-map").innerHTML = myTable1;
     else {
         var myMap = document.createElement("div");
         myMap.setAttribute("id", "my-map");
-
-        myMap.innerHTML = myTable;
+        
+        myMap.innerHTML = myTable1;
         document.body.appendChild(myMap);
     }
 
