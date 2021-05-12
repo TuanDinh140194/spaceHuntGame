@@ -19,6 +19,15 @@ class Map {
         if (ship != undefined)
             this.ship = ship;
 
+        this.sensor = document.createElement("div");
+        this.sensor.style.backgroundColor = "rgb(255,255,255,0.3)"
+        this.sensor.style.position = "relative";
+        this.sensor.style.width = CELL_SIZE + "px";
+        this.sensor.style.height = CELL_SIZE + "px";
+        this.sensor.style.animation = "example";
+        this.timer = null;
+        this.increase = 0;
+        this.delta = 1;
     }
 
     render() {
@@ -149,10 +158,10 @@ class Map {
         }
 
         //Show glow start for the passing step.
-        if ($id("cell-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1)) === null
-            && $id("start-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1)) === null
-        ) {
-            let td = $id("td-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1));
+        let td = $id("td-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1));
+        let check = td.innerHTML.indexOf("img") > 0;
+        if (check == false) {
+
             if (td !== null) {
                 let img = document.createElement("img");
                 img.style.width = (CELL_SIZE - 25) + "px";
@@ -169,6 +178,38 @@ class Map {
         this.elem.style.top = (window.innerHeight / 2 - y * this.boundy) + "px";
 
         return message;
+    }
+
+    sensorEffect() {
+       
+        let x = this.ship.x_of_map;
+        let y = this.ship.y_of_map;
+        let td = $id("td-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1));
+        td.innerHTML = "";
+        td.appendChild(this.sensor);
+
+        clearInterval(this.timer);
+       
+        let frame = () => {
+            if (this.increase == 5.0) {
+                this.delta = -1;
+            }
+
+            this.increase += 0.5*this.delta;
+
+            if (this.increase < 0 ) {
+                clearInterval(this.timer);
+                this.increase = 0;
+                this.delta = 1;
+                this.sensor.style.transform = "scale(1.0, 1.0)";
+                td.removeChild(this.sensor);
+            }
+           
+            this.sensor.style.transform = "scale(" + this.increase + "," + this.increase + ")";
+        }
+
+        this.timer = setInterval(frame, 50);
+
     }
 }
 

@@ -100,7 +100,6 @@ function makeMove(direction) {
 	}
 
 	let type = renderMap.moveSpaceShip(x, configuration[0].value.y - y + 1, parseInt(direction));
-	console.log(type, typeof type);
 	
 	while (type === "wormhole") {
 
@@ -115,11 +114,6 @@ function makeMove(direction) {
 		gameOver("You got a collision with the " + type + "!");
 		
 	}
-}
-
-
-function getRandomInt(max) {
-	return 1 + Math.floor(Math.random() * max);
 }
 
 function wormholeBehavior(x, y) {

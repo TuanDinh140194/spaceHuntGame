@@ -515,10 +515,8 @@ var configuration = [
     { id: "specific_cp", name: "Specific CP (X,Y)", value: { x: 50, y: 50 } },
 
     { id: "die", name: "Never die", value: false },
-
+  
     { id: "supplies", name: "Initial Supplies", value: 100, unit: "%" },
-
-
 
 
 ];
