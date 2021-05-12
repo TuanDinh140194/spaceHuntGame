@@ -79,7 +79,6 @@ function makeMove(direction) {
 		}
 	}
 
-	checkLocation();
 	document.forms[1].location.value = x.toString() + "," + y.toString();
 
 
@@ -92,7 +91,6 @@ function makeMove(direction) {
 
 	document.forms[1].supplies.value -= 2 * parseInt(document.forms[0].distance.value)// Two percent for later: (document.forms[1].supplies.value * 0.02);
 
-	checkStatus() // should this function contain the code below?
 	if (document.forms[1].energy.value <= 0 && configuration[5].value === false) {
 		gameOver("You ran out of energy!");
 		
