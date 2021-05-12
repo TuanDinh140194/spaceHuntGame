@@ -2,6 +2,7 @@ class Ship {
     constructor(configuration) {
         this.x_of_map = 1;
         this.y_of_map = 1;
+        this.y_of_table = 1;
         this.currentDirection = 1;
         this.angle = 0;
         this.id = "space-ship";
@@ -9,7 +10,7 @@ class Ship {
         this.elem = document.createElement('div');
         this.elem.style.width = CELL_SIZE + "px";
         this.elem.style.height = CELL_SIZE + "px";
-        this.elem.style.transition = "all 1s linear 0s";
+        this.elem.style.transition = "all 0.3s linear 0s";
         this.elem.setAttribute("id", this.id);
         this.elem.style.position = "absolute";
         this.elem.style.zIndex = 1;
@@ -34,12 +35,14 @@ class Ship {
         this.setAngle(angle);
         this.x_of_map = x;
         this.y_of_map = y;
+        this.y_of_table = this.configuration[0].value.y - this.y_of_map + 1;
+       
         if (this.boundx === 0) {
             this.elem.style.left = ((this.x_of_map - 1) * CELL_SIZE) + "px";
-            this.elem.style.top = ((this.y_of_map - 1) * (CELL_SIZE + 1.111)) + "px";
+            this.elem.style.top = ((this.y_of_table - 1) * (CELL_SIZE + 1.111)) + "px";
         } else {
             this.elem.style.left = ((this.x_of_map - 1) * this.boundx) + "px";
-            this.elem.style.top = ((this.y_of_map - 1) * this.boundy) + "px";
+            this.elem.style.top = ((this.y_of_table - 1) * this.boundy) + "px";
         }
 
     }

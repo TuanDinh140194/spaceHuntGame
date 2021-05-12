@@ -99,21 +99,7 @@ function makeMove(direction) {
 		
 	}
 
-	let type = renderMap.moveSpaceShip(x, configuration[0].value.y - y + 1, parseInt(direction));
-	
-	while (type === "wormhole") {
-
-		let [x_new, y_new] = wormholeBehavior(x,y);
-		x = x_new;
-		y = y_new;
-		document.forms[1].location.value = x.toString() + "," + y.toString();
-		
-		type = renderMap.moveSpaceShip(x, configuration[0].value.y - y + 1, parseInt(direction));
-	}
-	if (type ==="planet" || type ==="asteroid" || type ==="space-station") {
-		gameOver("You got a collision with the " + type + "!");
-		
-	}
+	renderMap.moveSpaceShip(x, y , parseInt(direction));
 }
 
 function wormholeBehavior(x, y) {

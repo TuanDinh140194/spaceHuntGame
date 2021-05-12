@@ -28,6 +28,8 @@ class Map {
         this.timer = null;
         this.increase = 0;
         this.delta = 1;
+
+       
     }
 
     render() {
@@ -39,7 +41,7 @@ class Map {
         if (this.ship !== undefined)
             this.elem.style.position = "fixed";
 
-        this.elem.style.transition = "all 1s linear 0s";
+        this.elem.style.transition = "all 0.3s linear 0s";
         document.body.appendChild(this.elem);
 
         if (this.ship !== undefined) {
@@ -125,16 +127,8 @@ class Map {
         this.elem.style.width = table.style.width;
         this.elem.style.height = table.style.height;
 
-    }
 
-    getSize() {
-        return { height: this.width, y: this.height };
-    }
-
-    moveSpaceShip(x, y, angle) {
-
-        let message = "";
-
+       
         //Calculate cell size for the first time 
         if (this.boundx === 0) {
             let cell2 = $id("td-" + 1 + "-" + 1);
@@ -149,16 +143,89 @@ class Map {
                 this.boundy = CELL_SIZE;
             }
         }
+        this.ship.setLocation(1, 1, 90);
+        this.elem.style.left = (window.innerWidth / 2 - this.ship.x_of_map * this.boundx) + "px";
+        this.elem.style.top = (window.innerHeight / 2 - this.ship.y_of_table * this.boundy) + "px";
+
+    }
+
+    getSize() {
+        return { height: this.width, y: this.height };
+    }
+
+    moveSpaceShip(x, y, angle) {
+    
+        let artifactResult = "";
+        let new_x = x;
+        let new_y = y;
+
+        x = this.ship.x_of_map ;
+        y = this.ship.y_of_map;
+        if ( x < new_x) {
+            for(;x<new_x && x > 0; ) {
+                x++;
+                [x,y,angle] = this.processArtifact(x,y,angle);
+            }
+        }
+        else
+        {
+            for(;x>new_x;){
+                x--;
+                [x,y,angle] = this.processArtifact(x,y,angle);
+            }
+        }
+        if ( y < new_y) {
+            for(;y<new_y && y > 0; ) {
+                y++;
+                [x,y,angle] = this.processArtifact(x,y,angle);
+            }
+        }
+        else
+        {
+            for(;y>new_y;){
+                y--;
+                [x,y,angle] = this.processArtifact(x,y,angle);
+            }
+        }
+
+
+    }
+
+    processArtifact(x,y,angle) {
+
+        let artifactResult =  this.move(x,y,angle);
+        if ( artifactResult === "wormhole") {
+            while (artifactResult === "wormhole") {
+
+                [x, y] = wormholeBehavior(x,y);
+                document.forms[1].location.value = x.toString() + "," + y.toString();
+                
+                artifactResult = renderMap.move(x, y, angle);
+                
+            }
+            return [x,y,angle];
+        }
+        if (artifactResult ==="planet" || artifactResult ==="asteroid" || artifactResult ==="space-station") {
+            gameOver("You got a collision with the " + artifactResult + "!");
+            return [-1,-1,-1]; 
+        }
+        return [x,y,angle]; 
+    }
+
+    move(x,y,angle) {
+        console.log(x,y);
+        let y_table = this.height - y + 1;
+        let artifactResult = "";
 
         //check whether (x,y) has an artifact
-        let cell = $id("cell-" + x + "-" + (this.height - y + 1));
-        if (cell !== null) {
-            cell.style.display = "block";
-            message = cell.getAttribute("type");
+        let artifact = $id("cell-" + x + "-" + y);
+        if (artifact !== null) {
+            artifact.style.display = "block";
+            artifactResult = artifact.getAttribute("type");
         }
 
         //Show glow start for the passing step.
-        let td = $id("td-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1));
+        let td = $id("td-" + this.ship.x_of_map + "-" + this.ship.y_of_map);
         let check = td.innerHTML.indexOf("img") > 0;
         if (check == false) {
 
@@ -167,24 +234,26 @@ class Map {
                 img.style.width = (CELL_SIZE - 25) + "px";
                 img.style.height = (CELL_SIZE - 25) + "px";
                 img.setAttribute("src", "img/glow_start.png");
-                img.setAttribute("id", "start-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1));
+                img.setAttribute("id", "start-" + this.ship.x_of_map + "-" + this.ship.y_of_map);
                 td.appendChild(img);
             }
         }
 
         this.ship.setLocation(x, y, angle);
 
-        this.elem.style.left = (window.innerWidth / 2 - x * this.boundx) + "px";
-        this.elem.style.top = (window.innerHeight / 2 - y * this.boundy) + "px";
+        this.elem.style.left = (window.innerWidth / 2 - this.ship.x_of_map * this.boundx) + "px";
+        this.elem.style.top = (window.innerHeight / 2 - this.ship.y_of_table * this.boundy) + "px";
 
-        return message;
+
+        return artifactResult;
+
     }
 
     sensorEffect() {
        
         let x = this.ship.x_of_map;
         let y = this.ship.y_of_map;
-        let td = $id("td-" + this.ship.x_of_map + "-" + (this.height - this.ship.y_of_map + 1));
+        let td = $id("td-" + x + "-" + y);
         td.innerHTML = "";
         td.appendChild(this.sensor);
 

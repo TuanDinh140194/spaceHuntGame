@@ -20,7 +20,6 @@ document.getElementById("play-game").addEventListener("click", function () {
     ship = new Ship(configuration);
     renderMap = new Map("game-map","game-map",configuration[0].value.x, configuration[0].value.y, configuration, ship,celestial);
     renderMap.render();
-    renderMap.moveSpaceShip(1,configuration[0].value.y,90);
     $id("control").style.display ="block";
     $id("status").style.display ="block";
 
