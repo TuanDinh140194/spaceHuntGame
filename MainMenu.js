@@ -73,4 +73,34 @@ sensorsButton.addEventListener('mousedown',function(){
 
 sensorsButton.style.display = "none";
 
-alert = function(name) {};
+function alert(message) {
+   
+	if ($id("alert") !== null ) {
+        console.log(message)
+		let m = $id("alert");
+		m.innerHTML = "<p>"+ message + "<br>"  + "</p>";
+		m.style.display = "block";
+		setTimeout(function() {
+			m.style.display = "none";
+		  }, (message.length*100));
+
+	}
+};
+
+
+function gameOver(message){
+	if ($id("game-over") !== null ) {
+		let m = $id("game-over");
+		m.innerHTML = "<p>"+message + "<br>" +"Game over!" + "</p>";
+		m.style.display = "block";
+		setTimeout(function() {
+			m.style.display = "none";
+		  }, (message.length*200));
+
+		setTimeout("location.reload(true);", (message.length*200));
+		$id("move-up").style.display ="none";
+		$id("move-down").style.display ="none";
+		$id("move-left").style.display ="none";
+		$id("move-right").style.display ="none";
+	}
+}

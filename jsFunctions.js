@@ -117,20 +117,7 @@ function wormholeBehavior(x, y) {
 	return [x,y];
 }
 
-function gameOver(message){
-	if ($id("alert") !== null ) {
-		var m = $id("alert");
-		m.innerHTML = "<p>"+message + "<br>" +"Game over!" + "</p>";
-		m.style.display = "block";
-		setTimeout(function() {
-			m.style.display = "none";
-		  }, (message.length*200));
 
-		setTimeout("location.reload(true);", (message.length*200));
-		$id("move-up").style.display ="none";
-		$id("move-down").style.display ="none";
-		$id("move-left").style.display ="none";
-		$id("move-right").style.display ="none";
-	}
-}
+
+
 
