@@ -223,6 +223,7 @@
   display: none;
 
 }
+
 .control__top, .control__bottom{
   display: grid;
   grid-template-columns: auto;

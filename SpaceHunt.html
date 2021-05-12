@@ -12,56 +12,60 @@
         <title>Group B</title>
     </head>
     <body onload=initializeState()>
-        <div class = "header" >
+        <div class="header">
             <h1>SpaceHunt 0.1</h1>
         </div>
-       
+
         <div id="main-menu" class="game-form main-menu">
             <h2> Main Menu</h2>
-                <div class="grid-container">
-                    <div class="grid-cell">
-                        <input type="button" value="Generate Artifacts"
-                            id="add-artifact">
-                    </div class="grid-cell">
-                    <div class="grid-cell">
-                        <input type="button" value="Configurations"
-                            id="configuration">
-                    </div>
-                    <div class="grid-cell">
-                        <input type="button" value="Play Game" id="play-game">
-                    </div>
-
-                    <div class="grid-container__footer">
-
-                    </div>
+            <div class="grid-container">
+                <div class="grid-cell">
+                    <input type="button" value="Generate Artifacts"
+                        id="add-artifact">
+                </div class="grid-cell">
+                <div class="grid-cell">
+                    <input type="button" value="Configurations"
+                        id="configuration">
                 </div>
+                <div class="grid-cell">
+                    <input type="button" value="Play Game" id="play-game">
+                </div>
+
+                <div class="grid-container__footer">
+
+                </div>
+            </div>
         </div>
 
-        <div id = "control" class="control game-form">
+        <div id="control" class="control game-form">
             <h2> Moving</h2>
             <div class="control__top">
                 <div>
-                    <button type="button" onClick="makeMove('90')" id = "move-up" >90<sup>o</sup></button>
+                    <button type="button" onClick="makeMove('90')" id="move-up"
+                        style="width: 50px;">90<sup>o</sup></button>
                 </div>
             </div>
             <div class="control__middle">
                 <div>
-                    <button type="button" onClick="makeMove('180') " id = "move-left" >180<sup>o</sup></button>
+                    <button type="button" onClick="makeMove('180')"id="move-left"
+                        style="width: 50px;">180<sup>o</sup></button>
                 </div>
                 <div>
-                    <button type="button" onClick="makeMove('0')" id = "move-right" >0<sup>o</sup></button>
+                    <button type="button" onClick="makeMove('0')" id="move-right"
+                        style="width: 50px;">0<sup>o</sup></button>
                 </div>
 
             </div>
 
             <div class="control__bottom">
                 <div>
-                    <button type="button" onClick="makeMove('270')" id = "move-down" >270<sup>o</sup></button>
+                    <button type="button" onClick="makeMove('270')" id="move-down"
+                        style="width: 50px;">270<sup>o</sup></button>
                 </div>
 
             </div>
 
-            <div class = "control__distance">
+            <div class="control__distance">
                 <form>
                     <span> Distance Per Move:</span>
                     <input id="distance" type="number" value=1 size=4
@@ -70,24 +74,38 @@
             </div>
         </div>
         <p>
-            <div id = "status" class="status game-form" >
+            <div id="status" class="status game-form">
                 <h2> Status</h2>
 
                 <form>
-                    Location: <input id="location"  style="border: none;background: var(--bodyColor);padding-bottom: 5px;" disabled type="text" size=6 
+                    Location: <input id="location" style="border:
+                        none;background: var(--bodyColor);padding-bottom: 5px;"
+                        disabled type="text" size=6
                         maxlength=8><br>
-                    Energy: <input id="energy" style="border: none;background: var(--bodyColor);padding-bottom: 5px;" disabled type="text" size=6 maxlength=6><br>
-                    Supplies: <input id="supplies" style="border: none;background: var(--bodyColor);padding-bottom: 5px;" disabled type="text" size=6
+                    Energy: <input id="energy" style="border: none;background:
+                        var(--bodyColor);padding-bottom: 5px;" disabled
+                        type="text" size=6 maxlength=6><br>
+                    Supplies: <input id="supplies" style="border:
+                        none;background: var(--bodyColor);padding-bottom: 5px;"
+                        disabled type="text" size=6
                         maxlength=6><br>
-                    Credits: <input id="credits" style="border: none;background: var(--bodyColor);padding-bottom: 5px;" disabled type="text" size=6 maxlength=6><br>
-                    Message: <input id="message" style="border: none;background: var(--bodyColor);padding-bottom: 5px;" disabled type="text" size=20 maxlength=80><br>
-                    Map Size: <input id="mapSizeX" style="border: none;background: var(--bodyColor);width:20px" disabled type="text" size=6 maxlength=10>
-                    x <input id="mapSizeY" style="border: none;background: var(--bodyColor);" disabled type="text" size=6 maxlength=10>
+                    Credits: <input id="credits" style="border: none;background:
+                        var(--bodyColor);padding-bottom: 5px;" disabled
+                        type="text" size=6 maxlength=6><br>
+                    Message: <input id="message" style="border: none;background:
+                        var(--bodyColor);padding-bottom: 5px;" disabled
+                        type="text" size=20 maxlength=80><br>
+                    Map Size: <input id="mapSizeX" style="border:
+                        none;background: var(--bodyColor);width:20px" disabled
+                        type="text" size=6 maxlength=10>
+                    x <input id="mapSizeY" style="border: none;background:
+                        var(--bodyColor);" disabled type="text" size=6
+                        maxlength=10>
                 </form>
             </div>
 
-            <div id = "alert" class="alert">
-               
+            <div id="alert" class="alert">
+
             </div>
 
 
@@ -101,7 +119,7 @@
             <script src="ArtifactLocation.js"></script>
             <script src="Sensors.js"></script>
             <script src="MainMenu.js"></script>
-           
-            
+
+
         </body>
     </html>
