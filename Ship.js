@@ -21,6 +21,8 @@ class Ship {
         this.img.style.left = "2px";
         this.img.style.top = "2px";
         this.elem.appendChild(this.img);
+        this.boundx = 0;
+        this.boundy = 0;
     }
 
     getLocation() {
@@ -32,25 +34,30 @@ class Ship {
         this.setAngle(angle);
         this.x_of_map = x;
         this.y_of_map = y;
-        this.elem.style.left = ((this.x_of_map - 1) * CELL_SIZE) + "px";
-        this.elem.style.top = ((this.y_of_map - 1) * (CELL_SIZE + 1)) + "px";
-       
+        if (this.boundx === 0) {
+            this.elem.style.left = ((this.x_of_map - 1) * CELL_SIZE) + "px";
+            this.elem.style.top = ((this.y_of_map - 1) * (CELL_SIZE + 1.111)) + "px";
+        } else {
+            this.elem.style.left = ((this.x_of_map - 1) * this.boundx) + "px";
+            this.elem.style.top = ((this.y_of_map - 1) * this.boundy) + "px";
+        }
+
     }
-    
+
     setAngle(newAngle) {
-        switch(newAngle) {
+        switch (newAngle) {
             case 90: {
                 newAngle = 0;
             } break;
             case 0: {
                 newAngle = 90;
-            }break;
+            } break;
             case 270: {
                 newAngle = 180;
-            }break;
-            case 180:{
+            } break;
+            case 180: {
                 newAngle = 270;
-            }break;
+            } break;
         }
         this.angle = newAngle;
         this.elem.style.transform = "rotate(" + this.angle + "deg)";
