@@ -1,3 +1,7 @@
+/* Shows the player planets, asteroids, space-stations, and wormholes that are located within 2 Celestial Points in both directions
+ *
+ */
+
 var sensorsButton = document.createElement("button");
 sensorsButton.innerHTML = "Deploy Sensors";
 document.body.appendChild(sensorsButton);
@@ -8,7 +12,7 @@ const SpaceStations = 3
 const Wormholes = 4
 
 sensorsButton.addEventListener("click", function () {
-    document.forms[1].supplies.value -= Math.round(document.forms[1].supplies.value * 0.02); // decrease supplies by two percent
+    document.forms[1].supplies.value -= Math.round(document.forms[1].supplies.value * 0.02 + 0.49); // decrease supplies by two percent (round up)
 
     let coords = document.forms[1].location.value.split(',');
     const x = Number(coords[0]);
@@ -22,14 +26,14 @@ sensorsButton.addEventListener("click", function () {
             continue;
         }
         for (let i = y-2; i <= y+2; i++) {
-            if (i < 0 || i >= SIZE2) {
+            if (i < 0 || i >= SIZE2) { // don't try sensing coordinates that are out of bounds
                 continue;
             }
             cell = $id("cell-" + j + "-"+ i);
             if(cell != null) {
                 type = cell.getAttribute("type"); 
                 found = true;
-                cell.style.display = "block";
+                cell.style.display = "block"; // display found item on map
 
                 if (type == "planet") {
                     alert("Detected: Planet at " + j + "," + i);
@@ -43,7 +47,6 @@ sensorsButton.addEventListener("click", function () {
                 else if (type == "wormhole") {
                     alert("Detected: Wormhole at " + j + "," + i);
                 }
-
             }
         }
     }
