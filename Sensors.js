@@ -22,11 +22,11 @@ sensorsButton.addEventListener("click", function () {
     var found = false; // found something
 
     for (let j = x-2; j <= x+2; j++) {
-        if (j < 0 || j >= SIZE1) { // don't try sensing coordinates that are out of bounds
+        if (j <= 0 || j > SIZE1) { // don't try sensing coordinates that are out of bounds
             continue;
         }
         for (let i = y-2; i <= y+2; i++) {
-            if (i < 0 || i >= SIZE2) { // don't try sensing coordinates that are out of bounds
+            if (i <= 0 || i > SIZE2) { // don't try sensing coordinates that are out of bounds
                 continue;
             }
             cell = $id("cell-" + j + "-"+ i);
