@@ -1,3 +1,4 @@
+//Tri Le
 function $selector(s) {
     return document.querySelector(s);
 } 

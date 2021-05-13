@@ -180,7 +180,7 @@ function updateValue(id, parent_value) {
 }
 
 function generateForm(id, className, title, obj, objName, callBackExit, callBackSubmit) {
-    console.log(callBackSubmit);
+   
     var formWrapper = document.createElement("div");
     formWrapper.style.zIndex = "1";
     formWrapper.setAttribute("id", id);

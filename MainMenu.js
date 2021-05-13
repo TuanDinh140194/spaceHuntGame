@@ -1,3 +1,4 @@
+//Tri Le
 
 document.getElementById("configuration").addEventListener("click", function () {
     if ( $id("map") !== null)

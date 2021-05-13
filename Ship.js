@@ -1,3 +1,4 @@
+// Tri Le
 class Ship {
     constructor(configuration) {
         this.x_of_map = 1;

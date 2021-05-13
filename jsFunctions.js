@@ -58,7 +58,7 @@ function makeMove(direction) {
 
 	//wormhole behavior 
 	if ((x <= 0 || x > configuration[0].value.x) || (y <= 0 || y > configuration[0].value.y)) {
-		var [x_new, y_new] = wormholeBehavior(x,y);
+		var [x_new, y_new] = wormholeBehavior(x, y);
 		x = x_new;
 		y = y_new;
 	}
@@ -89,14 +89,14 @@ function makeMove(direction) {
 	//if (!configuration[5].value && document.forms[1].supplies.value <= 0) // don't let supplies go below zero
 	//  document.forms[1].supplies.value = 0;
 
-        document.forms[1].supplies.value -= Math.round(document.forms[1].supplies.value * 0.02 + 0.49); // decrease supplies by two percent (round up)
+    document.forms[1].supplies.value -= Math.round(document.forms[1].supplies.value * 0.02 + 0.49); // decrease supplies by two percent (round up)
 
 	if (document.forms[1].energy.value <= 0 && configuration[5].value === false) { // check if energy is below 1 and Never Die is off
 		gameOver("You ran out of energy!");
 		
 	} else if (document.forms[1].supplies.value <= 0 && configuration[5].value === false) { // check if supplies are below 1 and Never Die is off
 		gameOver("You ran out of supplies!");
-		
+
 	}
 
 	renderMap.moveSpaceShip(x, y , parseInt(direction));
@@ -113,8 +113,8 @@ function wormholeBehavior(x, y) {
 		y = getRandomInt(configuration[0].value.y);
 	}
 	document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";
-	
-	return [x,y];
+
+	return [x, y];
 }
 
 
