@@ -77,7 +77,6 @@ sensorsButton.style.display = "none";
 function alert(message) {
    
 	if ($id("alert") !== null ) {
-        console.log(message)
 		let m = $id("alert");
 		m.innerHTML = "<p>"+ message + "<br>"  + "</p>";
 		m.style.display = "block";

@@ -20,6 +20,7 @@ function initializeState() {
 //then receives the response and updates the various fields on the web page
 
 function makeMove(direction) {
+	let stepByStep = true; //check for walking step by step or flying
 
 	let coords = document.forms[1].location.value.split(',');
 	let x = Number(coords[0]);
@@ -61,6 +62,7 @@ function makeMove(direction) {
 		var [x_new, y_new] = wormholeBehavior(x, y);
 		x = x_new;
 		y = y_new;
+		stepByStep = false;
 	}
 	else {
 		switch (direction) {
@@ -99,7 +101,7 @@ function makeMove(direction) {
 
 	}
 
-	renderMap.moveSpaceShip(x, y , parseInt(direction));
+	renderMap.moveSpaceShip(x, y , parseInt(direction), stepByStep);
 }
 
 function wormholeBehavior(x, y) {
@@ -113,7 +115,7 @@ function wormholeBehavior(x, y) {
 		y = getRandomInt(configuration[0].value.y);
 	}
 	document.forms[1].message.value = item = "You've flown into a wormhole! You've been transported to a different location...";
-
+	alert("You've flown into a wormhole! You've been transported to a different location...");
 	return [x, y];
 }
 

@@ -154,7 +154,7 @@ class Map {
         return { height: this.width, y: this.height };
     }
 
-    moveSpaceShip(x, y, angle) {
+    moveSpaceShip(x, y, angle,stepByStep) {
 
         let artifactResult = "";
         let new_x = x;
@@ -163,41 +163,45 @@ class Map {
         x = this.ship.x_of_map;
         y = this.ship.y_of_map;
         let isMeetingWormhole = false;
-        if (x < new_x) {
-            for (; x < new_x && x > 0;) {
-                x++;
-                [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
-                if (isMeetingWormhole) {
-                    return;
+        if (stepByStep) {
+            if (x < new_x) {
+                for (; x < new_x && x > 0;) {
+                    x++;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (isMeetingWormhole) {
+                        return;
+                    }
                 }
             }
-        }
-        else {
-            for (; x > new_x;) {
-                x--;
-                [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
-                if (isMeetingWormhole) {
-                    return;
+            else {
+                for (; x > new_x;) {
+                    x--;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (isMeetingWormhole) {
+                        return;
+                    }
                 }
             }
-        }
-        if (y < new_y) {
-            for (; y < new_y && y > 0;) {
-                y++;
-                [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
-                if (isMeetingWormhole) {
-                    return;
+            if (y < new_y) {
+                for (; y < new_y && y > 0;) {
+                    y++;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (isMeetingWormhole) {
+                        return;
+                    }
                 }
             }
-        }
-        else {
-            for (; y > new_y;) {
-                y--;
-                [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
-                if (isMeetingWormhole) {
-                    return;
+            else {
+                for (; y > new_y;) {
+                    y--;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (isMeetingWormhole) {
+                        return;
+                    }
                 }
             }
+        } else {
+            this.processArtifact(new_x, new_y, angle);
         }
 
 
