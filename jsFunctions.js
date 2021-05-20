@@ -20,7 +20,7 @@ function initializeState() {
 //then receives the response and updates the various fields on the web page
 
 function makeMove(direction) {
-	let stepByStep = true; //check for walking step by step or flying
+	let stepByStep = true; //true for walking step by step; false for wormhole behavior
 
 	let coords = document.forms[1].location.value.split(',');
 	let x = Number(coords[0]);

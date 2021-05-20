@@ -163,11 +163,17 @@ class Map {
         x = this.ship.x_of_map;
         y = this.ship.y_of_map;
         let isMeetingWormhole = false;
+        let flyOver = true; // becomes false when ship has completed move to destination point
+        // i.e. fly over cells until ship has completed move to destination point
+
+        // stepByStep is true when the ship is not going through a wormhole
         if (stepByStep) {
             if (x < new_x) {
                 for (; x < new_x && x > 0;) {
                     x++;
-                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (x == new_x)
+                        flyOver = false;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle, flyOver);
                     if (isMeetingWormhole) {
                         return;
                     }
@@ -176,7 +182,9 @@ class Map {
             else {
                 for (; x > new_x;) {
                     x--;
-                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (x == new_x)
+                        flyOver = false;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle, flyOver);
                     if (isMeetingWormhole) {
                         return;
                     }
@@ -185,7 +193,9 @@ class Map {
             if (y < new_y) {
                 for (; y < new_y && y > 0;) {
                     y++;
-                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (y == new_y)
+                        flyOver = false;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle, flyOver);
                     if (isMeetingWormhole) {
                         return;
                     }
@@ -194,38 +204,55 @@ class Map {
             else {
                 for (; y > new_y;) {
                     y--;
-                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle);
+                    if (y == new_y)
+                        flyOver = false;
+                    [x, y, angle, isMeetingWormhole] = this.processArtifact(x, y, angle, flyOver);
                     if (isMeetingWormhole) {
                         return;
                     }
                 }
             }
         } else {
-            this.processArtifact(new_x, new_y, angle);
+            this.processArtifact(new_x, new_y, angle, false);
         }
 
 
     }
 
-    processArtifact(x, y, angle) {
+    processArtifact(x, y, angle, flyOver) {
 
-        let artifactResult = this.move(x, y, angle);
-        if (artifactResult === "wormhole") {
-            while (artifactResult === "wormhole") {
+        let artifactResult = "";
+        if(!flyOver) { // move into cell
+            artifactResult = this.move(x, y, angle);
+            if (artifactResult === "wormhole") {
+                while (artifactResult === "wormhole") {
 
-                [x, y] = wormholeBehavior(x, y);
-                document.forms[1].location.value = x.toString() + "," + y.toString();
+                    [x, y] = wormholeBehavior(x, y);
+                    document.forms[1].location.value = x.toString() + "," + y.toString();
 
-                artifactResult = this.move(x, y, angle);
+                    artifactResult = this.move(x, y, angle);
 
+                }
+                return [x, y, angle, true];
             }
-            return [x, y, angle, true];
+            else
+                if (artifactResult === "planet" || artifactResult === "asteroid" || artifactResult === "space-station") {
+                    gameOver("You got a collision with the " + artifactResult + "!");
+                    return [-1, -1, -1, false];
+                }
         }
-        else
-            if (artifactResult === "planet" || artifactResult === "asteroid" || artifactResult === "space-station") {
+        else { // fly over cell but still check for asteroids
+            let artifact = $id("cell-" + x + "-" + y);
+            if (artifact !== null) {
+                artifactResult = artifact.getAttribute("type");
+            }
+            if (artifactResult === "asteroid") {
+                this.move(x, y, angle);
+                artifact.style.display = "block";
                 gameOver("You got a collision with the " + artifactResult + "!");
                 return [-1, -1, -1, false];
             }
+        }
         return [x, y, angle, false];
     }
 
