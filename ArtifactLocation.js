@@ -14,16 +14,16 @@ const SpaceStations = 3*/
 /*Array of Celestial Artifact location*/
 function arrayArt (){
     //var SIZE = document.getElementById("mapSizeX").value
-    let Wormholes = 4
-    let Planets = 1
-    let Asteroids = 2
-    let SpaceStations = 3
-    let arrayObj = [0,1,2,3,4,5]
-    let numberWormHoles = SIZE 
-    let numberPlanets = SIZE * 2
-    let numberAsteroids = SIZE
-    let numberSpaceStations = SIZE * 2
-    var arr = []
+    let Wormholes = 4;
+    let Planets = 1;
+    let Asteroids = 2;
+    let SpaceStations = 3;
+    let arrayObj = [0,1,2,3,4,5];
+    let numberWormHoles = SIZE;
+    let numberPlanets = SIZE * 2;
+    let numberAsteroids = SIZE;
+    let numberSpaceStations = SIZE * 2;
+    var arr = [];
     for (let i = 0; i < SIZE; i++) {
 
         arr[i] = []
@@ -31,31 +31,31 @@ function arrayArt (){
             let choosen = Math.floor(Math.random() * SIZE)
 
             if(choosen > 4){
-                arrayObj[choosen] = 0
+                arrayObj[choosen] = 0;
             }
             
             if (choosen == Wormholes){
                 numberWormHoles--
                 if (numberWormHoles <= 0){
-                    arrayObj[Wormholes] = 0
+                    arrayObj[Wormholes] = 0;
                 }    
             }
             else if (choosen == Planets){
                 numberPlanets--   
                 if (numberPlanets <= 0){
-                    arrayObj[Planets] = 0
+                    arrayObj[Planets] = 0;
                 }
             }          
             else if (choosen == Asteroids){
                 numberAsteroids--   
                 if (numberAsteroids <= 0){
-                    arrayObj[Asteroids] = 0
+                    arrayObj[Asteroids] = 0;
                 }
             }         
             else if (choosen == SpaceStations){
                 numberSpaceStations--
                 if (numberSpaceStations <= 0){
-                    arrayObj[SpaceStations] = 0
+                    arrayObj[SpaceStations] = 0;
                 }
             }
             arr[i][j] = arrayObj[choosen]
@@ -87,8 +87,8 @@ document.body.appendChild(buttonConfig);
 
 
 buttonConfig.addEventListener("click", function () {
-    SIZE1 = document.getElementById("mapSizeX").value
-    SIZE2 = document.getElementById("mapSizeY").value
+    SIZE1 = document.getElementById("mapSizeX").value;
+    SIZE2 = document.getElementById("mapSizeY").value;
     //mapArr = arrayArt()
     //celestial = arrayArt()
     let myTable1 = `<table id='map'>` + '\n'

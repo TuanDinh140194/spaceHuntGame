@@ -17,8 +17,8 @@ sensorsButton.addEventListener("click", function () {
     let coords = document.forms[1].location.value.split(',');
     const x = Number(coords[0]);
     const y = Number(coords[1]);
-    SIZE1 = document.getElementById("mapSizeX").value
-    SIZE2 = document.getElementById("mapSizeY").value
+    SIZE1 = document.getElementById("mapSizeX").value;
+    SIZE2 = document.getElementById("mapSizeY").value;
     var found = false; // found something
 
     for (let j = x-2; j <= x+2; j++) {

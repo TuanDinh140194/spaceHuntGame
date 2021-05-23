@@ -6,6 +6,7 @@
 function initializeState() {
 	//alert("Initializing!");
 	document.forms[1].location.value = "1,1";
+	document.forms[1].shipStatus.value = "Fully Operational";
 	document.forms[1].energy.value = configuration[1].value;
 	document.forms[1].supplies.value = configuration[6].value
 	document.forms[1].credits.value = configuration[2].value;
@@ -85,13 +86,17 @@ function makeMove(direction) {
 
 
 	// update the fields on the web page with the results
-	document.forms[1].energy.value -= 10 * parseInt(document.forms[0].distance.value);
-
 
 	//if (!configuration[5].value && document.forms[1].supplies.value <= 0) // don't let supplies go below zero
 	//  document.forms[1].supplies.value = 0;
 
-    document.forms[1].supplies.value -= Math.round(document.forms[1].supplies.value * 0.02 + 0.49); // decrease supplies by two percent (round up)
+    if (document.forms[1].shipStatus.value == "Fully Operational") {
+		document.forms[1].energy.value -= 10 * parseInt(document.forms[0].distance.value);
+	} else { // The ship is damaged and therefore consumes energy at 5x the normal rate until repaired.
+		document.forms[1].energy.value -= 5 * (10 * parseInt(document.forms[0].distance.value));
+	}	
+
+	document.forms[1].supplies.value -= Math.round(document.forms[1].supplies.value * 0.02 + 0.49); // decrease supplies by two percent (round up)
 
 	if (document.forms[1].energy.value <= 0 && configuration[5].value === false) { // check if energy is below 1 and Never Die is off
 		gameOver("You ran out of energy!");
