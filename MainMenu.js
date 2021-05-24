@@ -33,7 +33,6 @@ document.getElementById("play-game").addEventListener("click", function () {
     celestial[y][x] = 6;
     [x,y] = addPlanet("PlanetRyzen");
     celestial[y][x] = 7;
-
 });
 
 
@@ -92,6 +91,23 @@ function gameOver(message){
 	if ($id("game-over") !== null ) {
 		let m = $id("game-over");
 		m.innerHTML = "<p>"+message + "<br>" +"Game over!" + "</p>";
+		m.style.display = "block";
+		setTimeout(function() {
+			m.style.display = "none";
+		  }, (message.length*200));
+
+		setTimeout("location.reload(true);", (message.length*200));
+		$id("move-up").style.display ="none";
+		$id("move-down").style.display ="none";
+		$id("move-left").style.display ="none";
+		$id("move-right").style.display ="none";
+	}
+}
+
+function victory(message){
+	if ($id("game-over") !== null ) {
+		let m = $id("game-over");
+		m.innerHTML = "<p>"+message + "<br>" +"You've won!" + "</p>";
 		m.style.display = "block";
 		setTimeout(function() {
 			m.style.display = "none";

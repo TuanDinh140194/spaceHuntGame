@@ -18,11 +18,14 @@ function arrayArt (){
     let Planets = 1;
     let Asteroids = 2;
     let SpaceStations = 3;
-    let arrayObj = [0,1,2,3,4,5];
+	let Recipe = 5;
+    let arrayObj = [0,1,2,3,4,5,6];
     let numberWormHoles = SIZE;
     let numberPlanets = SIZE * 2;
     let numberAsteroids = SIZE;
     let numberSpaceStations = SIZE * 2;
+	let numberRecipes = SIZE;
+	let recipePlaced = false;
     var arr = [];
     for (let i = 0; i < SIZE; i++) {
 
@@ -30,7 +33,7 @@ function arrayArt (){
         for (let j = 0; j < SIZE; j++) {
             let choosen = Math.floor(Math.random() * SIZE)
 
-            if(choosen > 4){
+            if(choosen > 5){
                 arrayObj[choosen] = 0;
             }
             
@@ -58,6 +61,12 @@ function arrayArt (){
                     arrayObj[SpaceStations] = 0;
                 }
             }
+			else if (choosen == Recipe){
+				numberRecipes--
+				if(numberRecipes <=0){
+					arrayObj[Recipe] = 0;
+				}
+			}
             arr[i][j] = arrayObj[choosen]
             
         }
@@ -111,6 +120,10 @@ buttonConfig.addEventListener("click", function () {
             else if (celestial[i][j] == 4) {
                 myTable1 += "<img width='20' height='20' src='img/wormholes.png'/>"
             }
+			
+			else if (celestial[i][j] == 5) {
+				myTable1 += "<img width='20' height='20' src='img/recipe.png'/>"
+			}
             else
                 myTable1 += "<img width='20' height='20' src='img/paul-volkmer-qVotvbsuM_c-unsplash1.jpg'/>"
            

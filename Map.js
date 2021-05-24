@@ -118,6 +118,17 @@ class Map {
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i));
                         cell.appendChild(img);
                     } break;
+					case 5: {
+						//recipe
+						var img = document.createElement("img");
+                        img.style.width = (CELL_SIZE - 15) + "px";
+                        img.style.height = (CELL_SIZE - 15) + "px";
+                        img.style.display = "none";
+                        img.setAttribute("src", "img/recipe.png");
+                        img.setAttribute("type", "recipe");
+                        img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i));
+                        cell.appendChild(img);
+					} break;
                 }
                 row.appendChild(cell);
 
@@ -235,11 +246,17 @@ class Map {
                 }
                 return [x, y, angle, true];
             }
-            else
+            else {
                 if (artifactResult === "planet" || artifactResult === "asteroid" || artifactResult === "space-station") {
                     gameOver("You got a collision with the " + artifactResult + "!");
                     return [-1, -1, -1, false];
                 }
+				else {
+					if(artifactResult === "recipe") {
+						victory("You've recovered the Koca-Kola recipe!");
+					}
+				}
+			}
         }
         else { // fly over cell but still check for asteroids
             let artifact = $id("cell-" + x + "-" + y);
