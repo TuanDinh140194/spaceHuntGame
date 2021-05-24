@@ -61,10 +61,21 @@ function arrayArt (){
                     arrayObj[SpaceStations] = 0;
                 }
             }
+			//This implementation method will most likely be temporary.
+			//In its current state, can't guarantee that the recipe will be generated and placed on the map.
+			//Might take a similar approach to how planets were added
+			//in order to guarantee that the recipe is placed somewhere on the map.
 			else if (choosen == Recipe){
-				numberRecipes--
-				if(numberRecipes <=0){
-					arrayObj[Recipe] = 0;
+				if(recipePlaced == false){
+					numberRecipes--
+					if(numberRecipes <=0){
+						arrayObj[Recipe] = 0;
+					}
+					recipePlaced = true;
+				}
+				else{
+					arrayObj[choosen] = 0;
+					continue;
 				}
 			}
             arr[i][j] = arrayObj[choosen]

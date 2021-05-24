@@ -254,6 +254,7 @@ class Map {
 				else {
 					if(artifactResult === "recipe") {
 						victory("You've recovered the Koca-Kola recipe!");
+						return [-1, -1, -1, false];
 					}
 				}
 			}
