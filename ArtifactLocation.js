@@ -18,14 +18,12 @@ function arrayArt (){
     let Planets = 1;
     let Asteroids = 2;
     let SpaceStations = 3;
-	let Recipe = 5;
-    let arrayObj = [0,1,2,3,4,5,6];
+    let arrayObj = [0,1,2,3,4,5];
     let numberWormHoles = SIZE;
     let numberPlanets = SIZE * 2;
     let numberAsteroids = SIZE;
     let numberSpaceStations = SIZE * 2;
 	let numberRecipes = SIZE;
-	let recipePlaced = false;
     var arr = [];
     for (let i = 0; i < SIZE; i++) {
 
@@ -61,23 +59,6 @@ function arrayArt (){
                     arrayObj[SpaceStations] = 0;
                 }
             }
-			//This implementation method will most likely be temporary.
-			//In its current state, can't guarantee that the recipe will be generated and placed on the map.
-			//Might take a similar approach to how planets were added
-			//in order to guarantee that the recipe is placed somewhere on the map.
-			else if (choosen == Recipe){
-				if(recipePlaced == false){
-					numberRecipes--
-					if(numberRecipes <=0){
-						arrayObj[Recipe] = 0;
-					}
-					recipePlaced = true;
-				}
-				else{
-					arrayObj[choosen] = 0;
-					continue;
-				}
-			}
             arr[i][j] = arrayObj[choosen]
             
         }
@@ -132,9 +113,6 @@ buttonConfig.addEventListener("click", function () {
                 myTable1 += "<img width='20' height='20' src='img/wormholes.png'/>"
             }
 			
-			else if (celestial[i][j] == 5) {
-				myTable1 += "<img width='20' height='20' src='img/recipe.png'/>"
-			}
             else
                 myTable1 += "<img width='20' height='20' src='img/paul-volkmer-qVotvbsuM_c-unsplash1.jpg'/>"
            

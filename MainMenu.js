@@ -33,6 +33,8 @@ document.getElementById("play-game").addEventListener("click", function () {
     celestial[y][x] = 6;
     [x,y] = addPlanet("PlanetRyzen");
     celestial[y][x] = 7;
+	[x,y] = addRecipe("recipe");
+	celestial[y][x] = 8;
 });
 
 
@@ -63,6 +65,30 @@ function addPlanet(name) {
     p.innerHTML = name;
     cell.appendChild(div);
     cell.appendChild(img);
+    return [x,y];
+}
+
+function addRecipe() {
+    let x = getRandomInt(configuration[0].value.x)
+    let y = getRandomInt(configuration[0].value.y)
+    let cell = $id("td-" + x + "-" + y);
+    let check = (cell.innerHTML.indexOf("img") > 0);
+    while (check) {
+        x = getRandomInt(configuration[0].value.x);
+        y = getRandomInt(configuration[0].value.y);
+        cell = $id("td-" + x + "-" + y); 
+        check = (cell.innerHTML.indexOf("img") > 0);
+    }
+
+    let img = document.createElement("img");
+    img.style.width = (CELL_SIZE - 15) + "px";
+    img.style.height = (CELL_SIZE - 15) + "px";
+    img.setAttribute("src", "img/recipe.png");
+    img.setAttribute("type", "recipe");
+    img.setAttribute("id", "cell-" + x + "-" + y);
+	img.style.display = "none";
+	cell.appendChild(img);
+
     return [x,y];
 }
 
