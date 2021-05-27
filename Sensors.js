@@ -6,12 +6,6 @@ var sensorsButton = document.createElement("button");
 sensorsButton.innerHTML = "Deploy Sensors";
 document.body.appendChild(sensorsButton);
 
-const Planets = 1
-const Asteroids = 2
-const SpaceStations = 3
-const Wormholes = 4
-const Recipe = 5
-
 sensorsButton.addEventListener("click", function () {
     document.forms[1].supplies.value -= Math.round(document.forms[1].supplies.value * 0.02 + 0.49); // decrease supplies by two percent (round up)
 
@@ -48,9 +42,15 @@ sensorsButton.addEventListener("click", function () {
                 else if (type == "wormhole") {
                     alert("Detected: Wormhole at " + j + "," + i);
                 }
-				else if (type == "recipe") {
-					alert("Detected: Recipe at " + j + "," + i);
-				}
+                else if (type == "recipe") {
+                    alert("Detected: Recipe at " + j + "," + i);
+                }
+                else if (type == "freighter") {
+                    alert("Detected: Abandoned Freighter at " + j + "," + i);
+                }
+                else {
+                    alert("Detected: " + type + " at " + j + "," + i);
+                }
             }
         }
     }

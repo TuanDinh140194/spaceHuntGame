@@ -28,13 +28,13 @@ document.getElementById("play-game").addEventListener("click", function () {
     sensorsButton.style.display = "block";
 
     let [x,y] = addPlanet("PlanetCeleron");
-    celestial[y][x] = 5;
-    [x,y] = addPlanet("PlanetXeon");
     celestial[y][x] = 6;
-    [x,y] = addPlanet("PlanetRyzen");
+    [x,y] = addPlanet("PlanetXeon");
     celestial[y][x] = 7;
-	[x,y] = addRecipe("recipe");
-	celestial[y][x] = 8;
+    [x,y] = addPlanet("PlanetRyzen");
+    celestial[y][x] = 8;
+    [x,y] = addRecipe("recipe");
+    celestial[y][x] = 9;
 });
 
 

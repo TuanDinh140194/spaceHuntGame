@@ -14,16 +14,18 @@ const SpaceStations = 3*/
 /*Array of Celestial Artifact location*/
 function arrayArt (){
     //var SIZE = document.getElementById("mapSizeX").value
-    let Wormholes = 4;
     let Planets = 1;
     let Asteroids = 2;
     let SpaceStations = 3;
+    let Wormholes = 4;
+    let Freighters = 5;
     let arrayObj = [0,1,2,3,4,5];
     let numberWormHoles = SIZE;
     let numberPlanets = SIZE * 2;
     let numberAsteroids = SIZE;
     let numberSpaceStations = SIZE * 2;
-	let numberRecipes = SIZE;
+    let numberFreighters = SIZE;
+
     var arr = [];
     for (let i = 0; i < SIZE; i++) {
 
@@ -57,6 +59,12 @@ function arrayArt (){
                 numberSpaceStations--
                 if (numberSpaceStations <= 0){
                     arrayObj[SpaceStations] = 0;
+                }
+            }
+            else if (choosen == Freighters){
+                numberFreighters--;
+                if (numberFreighters <= 0){
+                    arrayObj[Freighters] = 0;
                 }
             }
             arr[i][j] = arrayObj[choosen]
@@ -111,6 +119,9 @@ buttonConfig.addEventListener("click", function () {
             }
             else if (celestial[i][j] == 4) {
                 myTable1 += "<img width='20' height='20' src='img/wormholes.png'/>"
+            }
+            else if (celestial[i][j] == 5) {
+                myTable1 += "<img width='20' height='20' src='img/freighter.png'/>"
             }
 			
             else

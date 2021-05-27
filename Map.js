@@ -118,17 +118,17 @@ class Map {
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i));
                         cell.appendChild(img);
                     } break;
-					case 5: {
-						//recipe
-						var img = document.createElement("img");
+                    case 5: {
+                        //freighters
+                        var img = document.createElement("img");
                         img.style.width = (CELL_SIZE - 15) + "px";
                         img.style.height = (CELL_SIZE - 15) + "px";
                         img.style.display = "none";
-                        img.setAttribute("src", "img/recipe.png");
-                        img.setAttribute("type", "recipe");
+                        img.setAttribute("src", "img/freighter.png");
+                        img.setAttribute("type", "freighter");
                         img.setAttribute("id", "cell-" + (j + 1) + "-" + (this.height - i));
                         cell.appendChild(img);
-					} break;
+                    } break;
                 }
                 row.appendChild(cell);
 
