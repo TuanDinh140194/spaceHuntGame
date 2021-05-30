@@ -535,7 +535,7 @@ function exitConfiguration() {
     document.getElementById("mapSizeX").value = configuration[0].value.x;
     document.getElementById("mapSizeY").value = configuration[0].value.y;
     document.getElementById("energy").value = configuration[1].value;
-	document.getElementById("supplies").value = configuration[6].value;
+    document.getElementById("supplies").value = configuration[6].value;
     document.getElementById("credits").value = configuration[2].value;
     formConfig.style.display = "none";
 }

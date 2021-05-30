@@ -226,8 +226,6 @@ class Map {
         } else {
             this.processArtifact(new_x, new_y, angle, false);
         }
-
-
     }
 
     processArtifact(x, y, angle, flyOver) {
@@ -246,18 +244,22 @@ class Map {
                 }
                 return [x, y, angle, true];
             }
-            else {
-                if (artifactResult === "planet" || artifactResult === "asteroid" || artifactResult === "space-station") {
-                    gameOver("You got a collision with the " + artifactResult + "!");
-                    return [-1, -1, -1, false];
-                }
-				else {
-					if(artifactResult === "recipe") {
-						victory("You've recovered the Koca-Kola recipe!");
-						return [-1, -1, -1, false];
-					}
-				}
-			}
+            else if (artifactResult === "planet" || artifactResult === "asteroid" || artifactResult === "space-station") {
+                gameOver("You got a collision with the " + artifactResult + "!");
+                return [-1, -1, -1, false];
+            }
+            else if(artifactResult === "recipe") {
+                victory("You've recovered the Koca-Kola recipe!");
+                return [-1, -1, -1, false];
+            }
+            else if(artifactResult === "freighter") {
+                document.forms[1].energy.value = parseInt(document.forms[1].energy.value) + parseInt(400); // freighter contains 400 energy, which the player gains
+                document.forms[1].supplies.value = configuration[6].value; // supplies are reset to max capacity
+                alert("You found an abandoned freighter!");
+                return [x, y, angle, false];
+            }
+            else
+                return [x, y, angle, false];
         }
         else { // fly over cell but still check for asteroids
             let artifact = $id("cell-" + x + "-" + y);
