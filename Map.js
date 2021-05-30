@@ -303,6 +303,10 @@ class Map {
         let planet = $id("planet-" + x + "-" + y);
         if (planet !== null) {
             alert("You've entered the orbit of the planet");
+            $id("move-up").style.display ="none";
+            $id("move-down").style.display ="none";
+            $id("move-left").style.display ="none";
+            $id("move-right").style.display ="none";
             this.ship.setLocationAndRotateClockWise(x, y, angle);
         }        
         else this.ship.setLocation(x, y, angle);//move the ship
