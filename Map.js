@@ -297,8 +297,13 @@ class Map {
             td.appendChild(img);
         }
 
-        //move the ship
-        this.ship.setLocation(x, y, angle);
+        //check whether the ship enter the orbit of a planet
+        let planet = $id("planet-" + x + "-" + y);
+        if (planet !== null) {
+            alert("You've entered the orbit of the planet");
+            this.ship.setLocationAndRotateClockWise(x, y, angle);
+        }        
+        else this.ship.setLocation(x, y, angle);//move the ship
 
         //move the table
         this.elem.style.left = (window.innerWidth / 2 - this.ship.x_of_map * this.boundx) + "px";

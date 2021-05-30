@@ -11,7 +11,6 @@ function $name(n) {
     return document.getElementsByName(n);
 }
 
-
 function getRandomInt(max) {
 	return 1 + Math.floor(Math.random() * max);
 }

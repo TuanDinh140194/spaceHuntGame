@@ -1,6 +1,6 @@
 //Tri Le
 
-document.getElementById("configuration").addEventListener("click", function () {
+$id("configuration").addEventListener("click", function () {
     if ( $id("map") !== null)
          $id("map").style.display = "none";
     formConfig.style.display ="block";
@@ -8,7 +8,7 @@ document.getElementById("configuration").addEventListener("click", function () {
 
 
 
-document.getElementById("play-game").addEventListener("click", function () {
+$id("play-game").addEventListener("click", function () {
      
     var main = document.getElementById("main-menu");
     main.style.display = "none";

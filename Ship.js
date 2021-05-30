@@ -33,19 +33,194 @@ class Ship {
 
 
     setLocation(x, y, angle) {
-        this.setAngle(angle);
-        this.x_of_map = x;
-        this.y_of_map = y;
-        this.y_of_table = this.configuration[0].value.y - this.y_of_map + 1;
-       
-        if (this.boundx === 0) {
-            this.elem.style.left = ((this.x_of_map - 1) * CELL_SIZE) + "px";
-            this.elem.style.top = ((this.y_of_table - 1) * (CELL_SIZE + 1.111)) + "px";
-        } else {
-            this.elem.style.left = ((this.x_of_map - 1) * this.boundx) + "px";
-            this.elem.style.top = ((this.y_of_table - 1) * this.boundy) + "px";
+                //check whether the ship enter the orbit of a planet
+        let planet = $id("planet-" + this.x_of_map + "-" + this.y_of_map);
+        if (planet !== null) {
+            alert("You are going to leave the orbit of the planet");  
+             if (document.forms[1].shipStatus.value !== "Fully Operational") {
+                alert("Damages have been repaired!");
+                document.forms[1].shipStatus.value = "Fully Operational";
+             }
+            alert("Fill up!");
+            document.forms[1].energy.value = configuration[1].value;
+            clearInterval(this.timer);
+            let count = 3;
+
+            let frame = () => {
+                if (count === 0) {  
+                    clearInterval(this.timer);
+                    alert("launching!");
+                    this.setLocationAndRotateCounterClockWise(x, y, angle);
+                    return;
+                }
+                if ($id("alert") !== null ) {
+                    let m = $id("alert");
+                    m.innerHTML = "<p>"+ count + "<br>"  + "</p>";
+                    m.style.display = "block";           
+                }
+                count --;
+            }
+            this.timer = setInterval(frame,1000);
+           
+        }        
+        else {
+            this.setAngle(angle);
+            this.x_of_map = x;
+            this.y_of_map = y;
+            this.y_of_table = this.configuration[0].value.y - this.y_of_map + 1;
+           
+            if (this.boundx === 0) {
+                this.elem.style.left = ((this.x_of_map - 1) * CELL_SIZE) + "px";
+                this.elem.style.top = ((this.y_of_table - 1) * (CELL_SIZE + 1.111)) + "px";
+            } else {
+                this.elem.style.left = ((this.x_of_map - 1) * this.boundx) + "px";
+                this.elem.style.top = ((this.y_of_table - 1) * this.boundy) + "px";
+            }
         }
 
+    }
+
+    setLocationAndRotateClockWise(x,y,angle) {
+        this.setAngle(angle);
+        let current_x = parseInt(this.elem.style.left.replace("px",""));
+        let current_y = parseInt(this.elem.style.top.replace("px",""));
+        let theboundx =0;
+        let theboundy = 0;
+        if (this.boundx === 0) {
+            theboundx = CELL_SIZE;
+            theboundy = (CELL_SIZE + 1.111);
+        } else {
+            theboundx = this.boundx;
+            theboundy = this.boundy;
+        }
+        console.log("current , ",current_x,current_y);
+        let target_x = (x - 1) * theboundx;
+        let target_y = (this.configuration[0].value.y - y) * theboundy;
+        let phi;
+        if (target_x !== current_x) {
+            if (target_x < current_x) 
+                phi = 0;
+            else 
+                phi = 180;
+        } else if (target_y !== current_y) {
+            if (target_y < current_y) 
+                phi = 90;
+            else 
+                phi = 270;
+        }
+
+        
+        let center_x = target_x ;
+        let center_y = target_y ;
+        console.log("target ",target_x,target_y);
+        let b = phi;
+        let a = 0;
+        let r =  Math.sqrt( Math.pow(target_x - current_x,2) + Math.pow(target_y - current_y,2));
+        let dr = r/36;
+        console.log("r = ",r);
+      //  let phi = (180/ Math.PI) + Math.acos(  (current_x*target_x + current_y*target_y) / (   Math.sqrt(Math.pow(target_x,2) + Math.pow(target_y,2)) * Math.sqrt(Math.pow(current_x,2) + Math.pow(current_y,2))  )        );
+        console.log("phi =", phi);
+        a = (b)*Math.PI/180;  
+        let dy =r*Math.sin(a);
+        let dx = r*Math.cos(a);
+        clearInterval(this.timer);
+
+        let frame = () => {
+            if (b === 360 + phi) {  
+                clearInterval(this.timer);
+                alert("landing !");
+                console.log("target changes to ",target_x,target_y);
+                this.x_of_map = x;
+                this.y_of_map = y;
+                this.elem.style.left = Math.round(target_x) + "px";
+                this.elem.style.top =  Math.round(target_y) + "px";
+                return;
+            }
+            center_x = target_x + dx;
+            center_y = target_y + dy ;
+           // console.log("target changes to ",center_x,center_y);
+            this.elem.style.left = Math.round(center_x) + "px";
+            this.elem.style.top =  Math.round(center_y) + "px";
+
+            b+= 10;
+            r -= dr;         
+            a = b*Math.PI/180; 
+            dy = r*Math.sin(a);
+            dx =  r*Math.cos(a);
+        }
+
+        this.timer = setInterval(frame, 0.5*360);
+    }
+
+    setLocationAndRotateCounterClockWise(x,y,angle) {
+        this.setAngle(angle);
+        let current_x = parseInt(this.elem.style.left.replace("px",""));
+        let current_y = parseInt(this.elem.style.top.replace("px",""));
+        let theboundx =0;
+        let theboundy = 0;
+        if (this.boundx === 0) {
+            theboundx = CELL_SIZE;
+            theboundy = (CELL_SIZE + 1.111);
+        } else {
+            theboundx = this.boundx;
+            theboundy = this.boundy;
+        }
+        console.log("current , ",current_x,current_y);
+        let target_x = (x - 1) * theboundx;
+        let target_y = (this.configuration[0].value.y - y) * theboundy;
+        let phi;
+        if (target_x !== current_x) {
+            if (target_x < current_x) 
+                phi = 0;
+            else 
+                phi = 180;
+        } else if (target_y !== current_y) {
+            if (target_y < current_y) 
+                phi = 90;
+            else 
+                phi = 270;
+        }
+
+        
+        let center_x = current_x ;
+        let center_y = current_y;
+        console.log("target ",target_x,target_y);
+        let b = 0;
+        let a = 0;
+        let r =  Math.sqrt( Math.pow(target_x - current_x,2) + Math.pow(target_y - current_y,2));
+        let dr = r/36;
+        console.log("r = ",r);
+      //  let phi = (180/ Math.PI) + Math.acos(  (current_x*target_x + current_y*target_y) / (   Math.sqrt(Math.pow(target_x,2) + Math.pow(target_y,2)) * Math.sqrt(Math.pow(current_x,2) + Math.pow(current_y,2))  )        );
+        console.log("phi =", phi);
+        a = (b)*Math.PI/180;  
+        let dy =r*Math.sin(a);
+        let dx = r*Math.cos(a);
+        clearInterval(this.timer);
+
+        let frame = () => {
+            if ((b === -360) || ( b <= -90 && Math.round(center_x) === target_x && Math.round(center_y) === target_y)) {  
+                clearInterval(this.timer);
+                alert("exited the orbit !");
+                console.log("target changes to ",target_x,target_y);
+                this.x_of_map = x;
+                this.y_of_map = y;
+                this.elem.style.left = Math.round(target_x) + "px";
+                this.elem.style.top =  Math.round(target_y) + "px";
+                return;
+            }
+            center_x = current_x + dx;
+            center_y = current_y + dy ;
+            this.elem.style.left = Math.round(center_x) + "px";
+            this.elem.style.top =  Math.round(center_y) + "px";
+
+            b -= 10;       
+            a = b*Math.PI/180; 
+            dy = r*Math.sin(a);
+            dx =  r*Math.cos(a);
+        }
+
+
+        this.timer = setInterval(frame, 0.5*360);
     }
 
     setAngle(newAngle) {
