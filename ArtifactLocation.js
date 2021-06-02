@@ -27,6 +27,7 @@ function arrayArt (){
     let numberFreighters = SIZE;
 
     var arr = [];
+    
     for (let i = 0; i < SIZE; i++) {
 
         arr[i] = []
@@ -71,7 +72,7 @@ function arrayArt (){
             
         }
     }
-    
+    arr[1,0] = SpaceStations;
     return arr    
 }
 

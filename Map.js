@@ -245,6 +245,8 @@ class Map {
                 return [x, y, angle, true];
             }
             else if (artifactResult === "planet" || artifactResult === "asteroid" || artifactResult === "space-station") {
+                if (hitSpaceStation(artifactResult) != -1)
+                    return [x, y, angle, false];
                 gameOver("You got a collision with the " + artifactResult + "!");
                 return [-1, -1, -1, false];
             }
