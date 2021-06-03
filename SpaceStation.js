@@ -84,7 +84,7 @@ class SpaceStation {
 function hitSpaceStation (artifactResult) {
     if (artifactResult === "space-station") {
         let m = $id("game-over");
-        message = "You just hit Space-Station. Let's play the game";
+        message = "Discovered a Space Station! Let's play the game.";
         m.innerHTML = "<p>"+message  + "</p>";
         m.style.display = "block";
         setTimeout(function() {
@@ -101,7 +101,7 @@ function hitSpaceStation (artifactResult) {
 
             if (prompt("How much is " + a + " " + op + " " + b + "?") == eval( a + op + b)) {
                 let m = $id("game-over");
-                message = "You are corrected!. You gain 100 Energy";
+                message = "Correct! You gain 100 Energy.";
                 value = document.forms[1].energy.value;
                 new_value = parseInt(value )+ 100;
                 document.forms[1].energy.value = new_value;
@@ -114,7 +114,7 @@ function hitSpaceStation (artifactResult) {
                 return 1;
             } else{
                 let m = $id("game-over");
-                message = "You are wrong. No more Energy Added!";
+                message = "Incorrect! No rewards given.";
                 m.innerHTML = "<p>"+message  + "</p>";
                 m.style.display = "block";
                 setTimeout(function() {
